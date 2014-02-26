@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-md-12">
+	<h1>$title</h1>
+		<ul>
+		#if( $parenturl )
+		   <li><a href="$parenturl">.. (parent dir)</a></li>
+		#end
+		#foreach( $item in $items )
+			#if( $item.isDirectory())
+				<li><a href="$item.getName()/">$item.getName()</a></li>
+			#else
+				<li><a href="$item.getName()">$item.getName()</a> <a class="btn btn-danger btn-xs" href="">delete</a></li>
+			#end
+		#end
+		</ul>
+	</div>
+</div>
