@@ -1,12 +1,12 @@
 package org.esgi.module.file;
 
 import java.io.File;
-import java.io.Writer;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.esgi.web.action.AbstractAction;
@@ -16,50 +16,43 @@ public class FileUpload extends AbstractAction {
 
 	@Override
 	public void execute(IContext context) throws Exception {
-		System.out.println("ok up");
-boolean isMultipart = ServletFileUpload.isMultipartContent(context.getRequest());
-Writer writer = context.getResponse().getWriter();
+		boolean isMultipart = ServletFileUpload.isMultipartContent(context.getRequest());
 		if(isMultipart){
-			//La factory qui cr�e des FileItem, pour lire les infos de fichiers:
+
 			FileItemFactory fif = new DiskFileItemFactory(); 
 			
-			//La classe qui parse les headers a la recherche de fichiers upload�s
 			ServletFileUpload servletFileUpload = new ServletFileUpload(fif); 
 			
-			//Lire les infos du fichier
 			try{
 
 				List<FileItem> fileList = servletFileUpload.parseRequest(context.getRequest());
 				FileItem uploadedFile = fileList.get(0);
 				
-				//Si aucun fichier n'a �t� saisi dans le form
+				//test if form have filename
 				if(uploadedFile.getName().equals("")){
-					writer.append("<p>Pas de fichier re�u</p>");
-					writer.append("<a href='/FileUpload/site/upload.jsp'>Retour au formulaire</a>");
-					return;
+					throw new Exception("Le nom de fichier est vide.");
 				}
 				
-				//On �crit le fichier
-				
-				File file = new File(context.getProperties().get("file.repository") + "/" + context.getParameter("path") + "/" + uploadedFile.getName());
+				//Save new file
+				System.out.println("File uploaded to : " + context.getProperties().get("file.repository") + "/" + context.getParameter("path") + uploadedFile.getName());
+				File file = new File(context.getProperties().get("file.repository") + "/" + context.getParameter("path") + uploadedFile.getName());
 				uploadedFile.write(file);
-				context.getResponse().sendRedirect("file/list/" + context.getParameter("path") + "/");
 				
-				//On affiche la liste des fichiers upload�s
+				context.getResponse().sendRedirect(context.getRequest().getContextPath() + "/file/list" + context.getParameter("path"));
+				
 			}
-			catch (FileUploadException fue){
-				System.out.println("Exception: parseRequest a echoue");
-				fue.printStackTrace();
-			} catch (Exception e) {
-				System.out.println("Exception: write file a echoue");
-				e.printStackTrace();
+			catch (Exception e){
+				throw e;
 			}
+		}else{
+			context.getResponse().sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+			throw new Exception("500");
 		}
 	}
 
 	@Override
 	public String getRoute() {
-		return "/file/upload/((.+)[^/])$";
+		return "^/file/upload/(.*/)$";
 	}
 
 	@Override
