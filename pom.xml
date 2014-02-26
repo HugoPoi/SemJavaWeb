@@ -20,6 +20,11 @@
       <version>2.4</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity</artifactId>
+      <version>1.7</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>SemJavaWeb</finalName>
@@ -31,6 +36,18 @@
                 <source>1.7</source>
                 <target>1.7</target>
            </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <webResources>
+            <resource>
+              <directory>${build.sourceDirectory}</directory>
+              <targetPath>sources</targetPath>
+            </resource>
+          </webResources>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.mortbay.jetty</groupId>
