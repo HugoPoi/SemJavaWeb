@@ -31,7 +31,13 @@ public class LayoutRenderer {
 		
 		//Parcours des dépendance et chargement des template
 		for (String layoutDependence : layoutDependencies) {
-			IAction a = router.find(layoutDependence, context);
+			IAction a;
+			if(layoutDependence.equals("__CURRENT__")){
+				a = action;
+			}else{
+				a = router.find(layoutDependence, context);
+			}
+			
 			if (a!=null) {
 				a.execute(context);
 			}

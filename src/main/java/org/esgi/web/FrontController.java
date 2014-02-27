@@ -15,6 +15,8 @@ import org.esgi.module.file.FileDelete;
 import org.esgi.module.file.FileDownload;
 import org.esgi.module.file.FileList;
 import org.esgi.module.file.FileUpload;
+import org.esgi.module.index.Index;
+import org.esgi.module.user.Connect;
 import org.esgi.web.action.IAction;
 import org.esgi.web.action.IContext;
 import org.esgi.web.layout.LayoutRenderer;
@@ -31,7 +33,7 @@ import org.esgi.web.route.Router;
  */
 public class FrontController extends HttpServlet{
 
-	
+
 	/**
 	 * 
 	 */
@@ -39,11 +41,11 @@ public class FrontController extends HttpServlet{
 	Router router = new Router();
 	Properties properties = new Properties();
 	private LayoutRenderer layoutRender;
-	
+
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		
+
 		String configFile = config.getServletContext().getInitParameter("config");
 		String path = config.getServletContext().getRealPath("/");
 
@@ -52,14 +54,19 @@ public class FrontController extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		// Should be in init.
+
 		Properties configVelocity = new Properties();
 		configVelocity.setProperty("file.resource.loader.path", config.getServletContext().getRealPath("/") + properties.getProperty("template.path")+ "/");
 		Velocity.init(configVelocity);
-		
+
 		registerAction(new FileList());
 		registerAction(new FileDownload());
 		registerAction(new FileUpload());
 		registerAction(new FileDelete());
+		registerAction(new Index());
+		registerAction(new Connect());
 
 		layoutRender = new LayoutRenderer();
 	}
@@ -72,19 +79,23 @@ public class FrontController extends HttpServlet{
 		IContext context = createContext(request, response);
 		IAction action = router.find(url, context);
 
+		properties.put("context", request.getContextPath());
+
+
 		if (null != action){
 
-			if (null != action.getLayout()) {
+			if (null == action.getLayout()) {
 				try {
 					action.execute(context);
 				} catch (Exception e) {
 					throw new ServletException(e);
 				}
-			}
-			try {
-				layoutRender.render(action, context, router);
-			} catch (Exception e) {
-				throw new ServletException(e);
+			} else {
+				try {
+					layoutRender.render(action, context, router);
+				} catch (Exception e) {
+					throw new ServletException(e);
+				}
 			}
 		}
 

@@ -26,4 +26,5 @@ public interface IContext {
 	void addCSSDependency(String url);
 	void addInlineCSS(String cssRule);
 	void addRawHeader(String rawHeadLine);
+	void addOnJsReady(String str);
 }

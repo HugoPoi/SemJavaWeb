@@ -32,13 +32,32 @@
 $context.getFragment("shared/main_header")
 $context.getFragment("__CURRENT__")
 $context.getFragment("shared/main_footer")
-    
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+   
+   <script>
+     var APP_CONTEXT = '$context.getProperties().get("context")';
+   </script> 
+   
+<!-- 
+    jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Include all compiled plugins (below), or include individual files as needed 
+  -->
+  
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    #foreach($jsUrl in $context.jsUrls)
+    <script src="$context.getProperties().get("context")/res/js/mylib.js"></script>
+
+    #foreach($jsUrl in $context.getJsUrls())
 		<script src="$jsUrl"></script>
 	#end
+
+<script>
+$(function(){
+	console.log('Im ready');    
+    #foreach($jsUrl in $context.getOnJsReady())
+		$jsUrl
+	#end
+});
+</script>
+
   </body>
 </html>
