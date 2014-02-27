@@ -136,13 +136,16 @@ public class Context implements IContext {
 	}
 	
 	public String genKeywords(){
-		StringBuffer impKeywords = new StringBuffer();
-		Iterator<String> i = this.keywords.iterator();
-		while(i.hasNext()) {
-			impKeywords.append(i.next());
-			if(i.hasNext()) impKeywords.append(",");
+		if(keywords.size() > 0){
+			StringBuffer impKeywords = new StringBuffer();
+			Iterator<String> i = this.keywords.iterator();
+			while(i.hasNext()) {
+				impKeywords.append(i.next());
+				if(i.hasNext()) impKeywords.append(",");
+			}
+			return impKeywords.toString();
 		}
-		return impKeywords.toString();
+		return null;
 	}
 
 }

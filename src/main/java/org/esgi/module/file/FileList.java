@@ -18,6 +18,9 @@ public class FileList extends AbstractAction {
 	
 			File currentDir = new File(repo, path);
 			if(currentDir.exists() && currentDir.isDirectory()){
+				context.setDescription("Liste des fichiers du répertoire "+ path);
+				context.addKeyword("fichier");
+				context.addKeyword("dossier");
 				context.getVelocityContext().put("title", repo + path);
 				context.getVelocityContext().put("items", currentDir.listFiles());
 				if(!path.equals("/")){
