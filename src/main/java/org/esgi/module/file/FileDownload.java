@@ -22,7 +22,6 @@ public class FileDownload extends AbstractAction{
 			OutputStream outbin = context.getResponse().getOutputStream();
 			InputStream inbin = Files.newInputStream(Paths.get(f.getAbsolutePath()));
 			while(inbin.read(buffer) != -1){
-				System.out.println("ok");
 				outbin.write(buffer);
 			}
 			inbin.close();
@@ -32,7 +31,7 @@ public class FileDownload extends AbstractAction{
 
 	@Override
 	public String getRoute() {
-		return "/file/list/((.+)[^/])$";
+		return "/file/list/(.+[^/])$";
 	}
 
 	@Override
