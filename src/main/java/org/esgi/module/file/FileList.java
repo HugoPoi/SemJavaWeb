@@ -21,7 +21,7 @@ public class FileList extends AbstractAction {
 				context.setDescription("Liste des fichiers du répertoire "+ path);
 				context.addKeyword("fichier");
 				context.addKeyword("dossier");
-				context.getVelocityContext().put("title", repo + path);
+				context.getVelocityContext().put("title", /*repo +*/ path);
 				context.getVelocityContext().put("items", currentDir.listFiles());
 				if(!path.equals("/")){
 					context.getVelocityContext().put("parenturl", context.getRequest().getContextPath() + "/file/list" + path.substring(0,path.substring(0, path.length()-2).lastIndexOf("/")) + "/");

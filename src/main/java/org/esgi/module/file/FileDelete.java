@@ -13,7 +13,7 @@ public class FileDelete extends AbstractAction {
 		File repo = new File((String) context.getProperties().get("file.repository"));
 		
 		File file = new File(repo, (String) context.getParameter("path"));
-		if(file.delete()){
+		if(!file.delete()){
 			throw new FileNotFoundException("Le fichier n'a pas pu etre supprimé.");
 		}
 		context.getResponse().sendRedirect(context.getRequest().getContextPath()+ "/file/list/" + context.getParameter("path").toString().substring(0,context.getParameter("path").toString().lastIndexOf("/")) + "/");
@@ -27,6 +27,11 @@ public class FileDelete extends AbstractAction {
 	@Override
 	public String[] getRewriteGroups() {
 		return new String[]{"path"};
+	}
+	
+	@Override
+	public String getLayout() {
+		return null;
 	}
 
 }
