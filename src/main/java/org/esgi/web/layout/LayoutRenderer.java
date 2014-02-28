@@ -69,7 +69,7 @@ public class LayoutRenderer {
 	private String checkTemplateFile (String templateName, IAction action, IContext context){
 		if(templateName.equals("__CURRENT__")){
 			String[] className = action.getClass().toString().split("\\.");
-			templateName = className[className.length-2]+"/"+className[className.length-1].toLowerCase();
+			templateName = className[className.length-2]+"/"+ action.getClass().getSimpleName().toLowerCase();
 		}
 		String root = context.getRequest().getSession().getServletContext().getRealPath("/") + context.getProperties().getProperty("template.path") + "/";
 		if(new File(root +  templateName + ".vm").exists()){

@@ -39,5 +39,10 @@ public class FileDownload extends AbstractAction{
 		return new String[]{"path"};
 	}
 	
+	@Override
+	public String getLayout(){
+		return null;
+	}
+	
 
 }
