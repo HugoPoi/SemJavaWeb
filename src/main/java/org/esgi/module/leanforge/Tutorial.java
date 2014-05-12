@@ -36,8 +36,12 @@ public class Tutorial extends AbstractAction {
 				selectedContent = content;
 			}
 		}
+
 		Step selectedStep = selectedContent.getStep().get(Integer.parseInt((String) context.getParameter("step")));
 		
+		context.getVelocityContext().put("tutorialBaseURL", context.getConfig("context") + "/tutorial/" + context.getParameter("tutorial"));
+		context.getVelocityContext().put("tutorialStep", selectedStep);
+		context.getVelocityContext().put("tutorialContent", selectedContent);
 		context.getVelocityContext().put("title", selectedContent.getTitle() + " - " + selectedStep.getName());
 		
 	}
