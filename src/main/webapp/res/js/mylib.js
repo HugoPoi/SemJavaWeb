@@ -25,14 +25,14 @@ var global = this,
        me.submit.on('click', function(e){me.onButtonClick(e)});
     };
 
-      global.Esgi.html.Form.prototype = {
-         initInputs : function(){
-              var me = this;
-              me._inputs = {};
-              $.each(this.cfg.inputs, function(idx, item) {
-                item.renderTo = me.el;
-                me._inputs[item.name] = new Esgi.html.inputs[item.type](item);            
-              });
+    global.Esgi.html.Form.prototype = {
+      initInputs : function(){
+        var me = this;
+        me._inputs = {};
+        $.each(this.cfg.inputs, function(idx, item) {
+          item.renderTo = me.el;
+          me._inputs[item.name] = new Esgi.html.inputs[item.type](item);
+        });
       },
       addInput : function(input) {
 
