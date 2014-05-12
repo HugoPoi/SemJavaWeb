@@ -34,7 +34,7 @@ $context.getFragment("__CURRENT__")
 $context.getFragment("shared/main_footer")
    
    <script>
-     var APP_CONTEXT = '$context.getProperties().get("context")';
+     var APP_CONTEXT = '$context.getConfig("context")';
    </script> 
    
 <!-- 
@@ -44,7 +44,7 @@ $context.getFragment("shared/main_footer")
   -->
   
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="$context.getProperties().get("context")/res/js/mylib.js"></script>
+    <script src="$context.getConfig("context")/res/js/mylib.js"></script>
 
     #foreach($jsUrl in $context.getJsUrls())
 		<script src="$jsUrl"></script>
@@ -53,8 +53,8 @@ $context.getFragment("shared/main_footer")
 <script>
 $(function(){
 	console.log('Im ready');    
-    #foreach($jsUrl in $context.getOnJsReady())
-		$jsUrl
+    #foreach($jsContent in $context.getOnJsReady())
+		$jsContent
 	#end
 });
 </script>

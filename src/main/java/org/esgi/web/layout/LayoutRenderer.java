@@ -21,7 +21,7 @@ public class LayoutRenderer {
 		
 		JsonExtractor extractor = new JsonExtractor();
 	    ArrayList<String> layoutDependencies = 
-	            extractor.getDependencies(context.getRequest().getSession().getServletContext().getRealPath("/") + context.getProperties().getProperty("layout.path")+ "/" + action.getLayout()+".json");
+	            extractor.getDependencies(context.getRequest().getSession().getServletContext().getRealPath("/") + context.getConfig("layout.path")+ "/" + action.getLayout()+".json");
 		// Chargement du fichier JSON de la liste des dépendence au niveau des variable.
 		//String[] layoutDependencies = {"__CURRENT__","shared/main_header","shared/main_footer"};
 		
@@ -71,7 +71,7 @@ public class LayoutRenderer {
 			String[] className = action.getClass().toString().split("\\.");
 			templateName = className[className.length-2]+"/"+ action.getClass().getSimpleName().toLowerCase();
 		}
-		String root = context.getRequest().getSession().getServletContext().getRealPath("/") + context.getProperties().getProperty("template.path") + "/";
+		String root = context.getRequest().getSession().getServletContext().getRealPath("/") + context.getConfig("template.path") + "/";
 		if(new File(root +  templateName + ".vm").exists()){
 			return templateName + ".vm";
 		}

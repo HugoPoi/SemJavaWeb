@@ -1,7 +1,5 @@
 package org.esgi.web.action;
 
-import java.util.Properties;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,7 +9,7 @@ public interface IContext {
 
 	Object getParameter(String key);
 	void setParameter(String key, Object o);
-	Properties getProperties();
+	String getConfig(String key);
 	// Object instance must have a toString implementation.
 	Object getFragment(String fragment);
 	void setFragment(String fragment, Object o);

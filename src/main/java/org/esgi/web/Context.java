@@ -20,7 +20,7 @@ public class Context implements IContext {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private VelocityContext velocityContext;
-	public Properties properties;
+	public Properties config;
 	
 	Map<String, Object> mapParameters;
 	Map<String, Object> mapFragments;
@@ -38,7 +38,7 @@ public class Context implements IContext {
 	Context(HttpServletRequest _request, HttpServletResponse _response, Properties properties){
 		request = _request;
 		response = _response;
-		this.properties = properties;
+		this.config = properties;
 		this.velocityContext = new VelocityContext();
 		this.velocityContext.put("context", this);
 		
@@ -72,11 +72,12 @@ public class Context implements IContext {
 	public HttpServletResponse getResponse() {
 		return this.response;
 	}
-
+	
 	@Override
-	public Properties getProperties() {
-		return properties;
+	public String getConfig(String key) {
+		return config.getProperty(key);
 	}
+	
 	@Override
 	public Object getFragment(String fragment) {
 		return mapFragments.get(fragment);

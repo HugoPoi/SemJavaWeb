@@ -11,12 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.velocity.app.Velocity;
-import org.esgi.module.file.FileDelete;
-import org.esgi.module.file.FileDownload;
-import org.esgi.module.file.FileList;
-import org.esgi.module.file.FileUpload;
-import org.esgi.module.index.Index;
-import org.esgi.module.user.Connect;
+import org.esgi.module.leanforge.Home;
+import org.esgi.module.leanforge.Tutorial;
 import org.esgi.web.action.IAction;
 import org.esgi.web.action.IContext;
 import org.esgi.web.layout.LayoutRenderer;
@@ -55,18 +51,13 @@ public class FrontController extends HttpServlet{
 			e.printStackTrace();
 		}
 
-		// Should be in init.
-
 		Properties configVelocity = new Properties();
 		configVelocity.setProperty("file.resource.loader.path", config.getServletContext().getRealPath("/") + properties.getProperty("template.path")+ "/");
 		Velocity.init(configVelocity);
-
-		registerAction(new FileList());
-		registerAction(new FileDownload());
-		registerAction(new FileUpload());
-		registerAction(new FileDelete());
-		registerAction(new Index());
-		registerAction(new Connect());
+		
+		// registerAction(new Module());
+		registerAction(new Home());
+		registerAction(new Tutorial());
 
 		layoutRender = new LayoutRenderer();
 	}
@@ -80,6 +71,7 @@ public class FrontController extends HttpServlet{
 		IAction action = router.find(url, context);
 
 		properties.put("context", request.getContextPath());
+		properties.put("imgbaseurl", request.getContextPath() + properties.getProperty("image.path"));
 
 
 		if (null != action){
