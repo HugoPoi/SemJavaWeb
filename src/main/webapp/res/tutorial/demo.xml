@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tutorial>
+  <meta>
+    <software>
+      <name id="software"><![CDATA[Software Name]]></name>
+      <website href="http://official.website.com"><![CDATA[Software Website]]></website>
+    </software>
+    <title><![CDATA[Tutorial Name]]></title>
+    <keywords>java,install,keyword1</keywords>
+    <category>testing</category>
+    <plateform>windows</plateform>
+  </meta>
+  <content>
+    <step name="First Step">
+      <substep><![CDATA[
+        My first text line. <a class="btn" href="http://download.software.com/">Download</a>
+      ]]></substep>
+    </step>
+  </content>
+</tutorial>

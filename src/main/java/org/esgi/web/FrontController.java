@@ -50,7 +50,9 @@ public class FrontController extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
+		properties.setProperty("realpath", path);
+		
 		Properties configVelocity = new Properties();
 		configVelocity.setProperty("file.resource.loader.path", config.getServletContext().getRealPath("/") + properties.getProperty("template.path")+ "/");
 		Velocity.init(configVelocity);
