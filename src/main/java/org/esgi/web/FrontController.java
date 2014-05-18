@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.velocity.app.Velocity;
 import org.esgi.module.leanforge.Home;
-import org.esgi.module.leanforge.Tutorial;
+import org.esgi.module.leanforge.TutorialStepDisplay;
+import org.esgi.module.leanforge.TutorialUpload;
+import org.esgi.module.leanforge.model.TutorialModel;
 import org.esgi.web.action.IAction;
 import org.esgi.web.action.IContext;
 import org.esgi.web.layout.LayoutRenderer;
@@ -35,32 +37,39 @@ public class FrontController extends HttpServlet{
 	 */
 	private static final long serialVersionUID = 1L;
 	Router router = new Router();
-	Properties properties = new Properties();
+	Properties mainConfig = new Properties();
 	private LayoutRenderer layoutRender;
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-
+		
+		// Do the init config operations behind this
 		String configFile = config.getServletContext().getInitParameter("config");
 		String path = config.getServletContext().getRealPath("/");
 
 		try {
-			properties.load(new FileInputStream(path +"/" + configFile));
+			mainConfig.load(new FileInputStream(path +"/" + configFile));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		properties.setProperty("realpath", path);
+		mainConfig.setProperty("realpath", path);
+		mainConfig.put("imgbaseurl", mainConfig.getProperty("context") + mainConfig.getProperty("image.path"));
 		
 		Properties configVelocity = new Properties();
-		configVelocity.setProperty("file.resource.loader.path", config.getServletContext().getRealPath("/") + properties.getProperty("template.path")+ "/");
+		configVelocity.setProperty("file.resource.loader.path", config.getServletContext().getRealPath("/") + mainConfig.getProperty("template.path")+ "/");
 		Velocity.init(configVelocity);
 		
+		//Model
+		TutorialModel data = new TutorialModel(mainConfig);
+		
+		// register and inject dependencies
 		// registerAction(new Module());
 		registerAction(new Home());
-		registerAction(new Tutorial());
-
+		registerAction(new TutorialStepDisplay(mainConfig, data));
+		registerAction(new TutorialUpload(mainConfig,data));
+		
 		layoutRender = new LayoutRenderer();
 	}
 	@Override
@@ -71,10 +80,6 @@ public class FrontController extends HttpServlet{
 		String url = request.getPathInfo();
 		IContext context = createContext(request, response);
 		IAction action = router.find(url, context);
-
-		properties.put("context", request.getContextPath());
-		properties.put("imgbaseurl", request.getContextPath() + properties.getProperty("image.path"));
-
 
 		if (null != action){
 
@@ -97,7 +102,7 @@ public class FrontController extends HttpServlet{
 
 	private IContext createContext(HttpServletRequest request, 
 			HttpServletResponse response) {
-		return new Context(request, response, properties);
+		return new Context(request, response, mainConfig);
 	}
 
 	public void registerAction(IAction action) {

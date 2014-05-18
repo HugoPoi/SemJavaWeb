@@ -3,15 +3,16 @@
 		<img class="img-responsive" src="$context.getConfig("imgbaseurl")/logo.png" alt="Home logo lean forge">
 	</div>
 	<div class="col-md-10">
-		<h1>$title</h1>
+		<h1>$title <span class="pull-right">$metas.getLanguages().getCodinglang().get(0)</span></h1>
+		<h2>$metas.getSoftware().getName()</h2>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<ol class="list-inline">
+		<ol class="list-inline step-list">
 		#foreach($step in $tutorialContent.getStep())
 		#set( $stepcount = $velocityCount - 1 )
-			<li><a title="$step.getName()" href="$tutorialBaseURL/$stepcount">$velocityCount</a></li>
+			<li><a title="$step.getName()" href="$tutorialBaseURL/$stepcount">$stepcount</a></li>
 		#end
 		</ol>
 	</div>

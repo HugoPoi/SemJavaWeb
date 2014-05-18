@@ -1,0 +1,8 @@
+.step-list li{
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+}
+.step-list.list-inline > li:first-child{
+  padding-left: 5px;
+}

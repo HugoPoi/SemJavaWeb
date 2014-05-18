@@ -48,7 +48,12 @@ public class Context implements IContext {
 		
 		jsUrls = new TreeSet<String>();
 		cssUrls = new TreeSet<String>();
+		
 		inlineCss = new ArrayList<>();
+	}
+	
+	public Set<String> getCssUrls(){
+		return cssUrls;
 	}
 	
 	@Override
