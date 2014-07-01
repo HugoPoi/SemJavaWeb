@@ -3,13 +3,13 @@
 		<img class="img-responsive" src="$context.getConfig("imgbaseurl")/logo.png" alt="Home logo lean forge">
 	</div>
 	<div class="col-md-10">
-		<h1>Category</h1>
+		<h1>$category</h1>
 	</div>
 </div>
 <div class="row">
-#foreach($dtuto in $tutorials)
+#foreach($tuto in $tutorials)
 	<div class="col-md-12">
-		<h2></h2>
+		<h2>$tuto.getTitle()</h2>
 	</div>
 #end
 </div>

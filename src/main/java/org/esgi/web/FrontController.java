@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.velocity.app.Velocity;
 import org.esgi.module.leanforge.Home;
+import org.esgi.module.leanforge.TutorialCategory;
 import org.esgi.module.leanforge.TutorialStepDisplay;
 import org.esgi.module.leanforge.TutorialUpload;
 import org.esgi.module.leanforge.model.TutorialModel;
@@ -69,6 +70,7 @@ public class FrontController extends HttpServlet{
 		registerAction(new Home());
 		registerAction(new TutorialStepDisplay(mainConfig, data));
 		registerAction(new TutorialUpload(mainConfig,data));
+		registerAction(new TutorialCategory(mainConfig,data));
 		
 		layoutRender = new LayoutRenderer();
 	}
