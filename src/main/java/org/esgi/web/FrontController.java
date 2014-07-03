@@ -48,13 +48,13 @@ public class FrontController extends HttpServlet{
 		// Do the init config operations behind this
 		String configFile = config.getServletContext().getInitParameter("config");
 		String path = config.getServletContext().getRealPath("/");
-
+		System.out.println("try load config");
 		try {
 			mainConfig.load(new FileInputStream(path +"/" + configFile));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println("Config Loaded bordel !!");
 		mainConfig.setProperty("realpath", path);
 		mainConfig.put("imgbaseurl", mainConfig.getProperty("context") + mainConfig.getProperty("image.path"));
 		

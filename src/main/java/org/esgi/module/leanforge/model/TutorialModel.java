@@ -38,10 +38,11 @@ public class TutorialModel {
 				+ mainConfig.getProperty("tutorial.repository"));
 
 		loadedTutorials = new HashMap<>();
-		for (File tutorialfile : tutorialsDir.listFiles()) {
-
-			loadOneFile(tutorialfile);
-
+		if(tutorialsDir != null) return;
+		else{
+			for (File tutorialfile : tutorialsDir.listFiles()) {
+				loadOneFile(tutorialfile);
+			}
 		}
 	}
 
