@@ -1,6 +1,5 @@
 package org.esgi.web;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -46,12 +45,12 @@ public class FrontController extends HttpServlet{
 		super.init(config);
 		
 		// Do the init config operations behind this
-		String configFile = config.getServletContext().getInitParameter("config");
 		String path = config.getServletContext().getRealPath("/");
 		System.out.println("try load config");
 		try {
-			mainConfig.load(new FileInputStream(path +"/" + configFile));
-		} catch (Exception e) {
+			mainConfig.load(this.getClass().getClassLoader().getResourceAsStream("config.ini"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("Config Loaded bordel !!");
