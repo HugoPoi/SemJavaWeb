@@ -8,6 +8,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import dev.leanforge.tutorialschema.Tutorial;
+import dev.leanforge.tutorialschema.Tutorial.Content;
+
 public class TutorialModel {
 
 	Properties mainConfig;
@@ -38,11 +41,8 @@ public class TutorialModel {
 				+ mainConfig.getProperty("tutorial.repository"));
 
 		loadedTutorials = new HashMap<>();
-		if(tutorialsDir != null) return;
-		else{
-			for (File tutorialfile : tutorialsDir.listFiles()) {
-				loadOneFile(tutorialfile);
-			}
+		for (File tutorialfile : tutorialsDir.listFiles()) {
+			loadOneFile(tutorialfile);
 		}
 	}
 
@@ -65,6 +65,19 @@ public class TutorialModel {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public static Content getContentForLang(Tutorial tutorialData, String lang){
+		Content selectedContent = null;
+		for (Content content : tutorialData.getContent()) {
+			if(content.getLang().toLowerCase().equals("fr-fr")){
+				selectedContent = content;
+			}
+			if(content.getLang().toLowerCase().equals(lang)){
+				selectedContent = content;
+			}
+		}
+		return selectedContent;
 	}
 
 }

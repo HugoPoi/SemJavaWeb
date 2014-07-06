@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.velocity.app.Velocity;
 import org.esgi.module.leanforge.Home;
+import org.esgi.module.leanforge.TutorialCategories;
 import org.esgi.module.leanforge.TutorialCategory;
 import org.esgi.module.leanforge.TutorialStepDisplay;
 import org.esgi.module.leanforge.TutorialUpload;
@@ -59,6 +60,9 @@ public class FrontController extends HttpServlet{
 		
 		Properties configVelocity = new Properties();
 		configVelocity.setProperty("file.resource.loader.path", config.getServletContext().getRealPath("/") + mainConfig.getProperty("template.path")+ "/");
+		configVelocity.setProperty("input.encoding", "UTF-8");
+		configVelocity.setProperty("output.encoding", "UTF-8");
+		configVelocity.setProperty("default.contentType", "UTF-8");
 		Velocity.init(configVelocity);
 		
 		//Model
@@ -70,6 +74,7 @@ public class FrontController extends HttpServlet{
 		registerAction(new TutorialStepDisplay(mainConfig, data));
 		registerAction(new TutorialUpload(mainConfig,data));
 		registerAction(new TutorialCategory(mainConfig,data));
+		registerAction(new TutorialCategories(mainConfig,data));
 		
 		layoutRender = new LayoutRenderer();
 	}
@@ -81,6 +86,9 @@ public class FrontController extends HttpServlet{
 		String url = request.getPathInfo();
 		IContext context = createContext(request, response);
 		IAction action = router.find(url, context);
+		
+		response.setCharacterEncoding("UTF-8");
+		response.addHeader("Content-Type", "text/html; charset=utf-8");
 
 		if (null != action){
 

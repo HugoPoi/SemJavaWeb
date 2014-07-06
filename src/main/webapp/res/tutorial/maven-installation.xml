@@ -43,7 +43,8 @@
     <title><![CDATA[Installation de Maven]]></title>
     <step name="First Step">
       <substep><![CDATA[
-        Pour linux l'installation de Maven est relativement simple car un packet est présent sur les dépôts de la majorité des distributions.
+        Pour linux l'installation de Maven est relativement simple car un packet est présent sur les dépôts de la majorité des 
+distributions.
         Cliquez sur le lien suivant : <a href="apt://maven">Maven via APT</a>
       ]]></substep>
       <substep><![CDATA[

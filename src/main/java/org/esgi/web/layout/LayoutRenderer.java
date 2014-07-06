@@ -47,7 +47,7 @@ public class LayoutRenderer {
 			
 			//Liaison des variable des template avec celle du context. Exemple $title de filelist.vm et title de FIleList.java
 			if(templateFile!=null){
-				Template actionTemplate = Velocity.getTemplate(templateFile);
+				Template actionTemplate = Velocity.getTemplate(templateFile,"UTF-8");
 				StringWriter renderedTemplate = new StringWriter();
 				actionTemplate.merge(context.getVelocityContext(), renderedTemplate);
 				context.setFragment(layoutDependence, renderedTemplate);

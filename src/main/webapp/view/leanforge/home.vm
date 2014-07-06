@@ -5,8 +5,8 @@
 </div>
 <div class="row">
 	<div class="col-md-offset-4 col-md-4">
-		<a class="btn btn-block btn-primary btn-lg" href="#">Start coding</a>
+		<a class="btn btn-block btn-primary btn-lg" href="$context.getConfig("context")/categories">Start coding</a>
 		or
-		<a class="btn btn-block btn-primary" href="#">Discover the Lean</a>
+		<a class="btn btn-block btn-primary" href="#">Discover the Leané</a>
 	</div>
 </div>

@@ -16,6 +16,7 @@ public class TutorialCategories extends AbstractAction {
 	
 	@Override
 	public void execute(IContext context) throws Exception {
+		context.getVelocityContext().put("categoryBaseUrl",context.getConfig("context")+"/category/");
 		context.getVelocityContext().put("categories", dev.leanforge.tutorialschema.Leancategory.values());
 	}
 	

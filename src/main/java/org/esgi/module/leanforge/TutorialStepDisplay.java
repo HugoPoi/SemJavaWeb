@@ -19,7 +19,6 @@ public class TutorialStepDisplay extends AbstractAction {
 	
 	@Override
 	public void execute(IContext context) throws Exception {
-		context.getResponse().addHeader("Content-Type", "text/html; charset=utf-8");
 		context.addCSSDependency(context.getConfig("context")+ "/res/css/style.css");
 		context.setPageTitle(context.getParameter("tutorial") + " " + context.getParameter("step"));
 		
@@ -28,15 +27,8 @@ public class TutorialStepDisplay extends AbstractAction {
 		context.getVelocityContext().put("tutorial", tutorialData);
 		
 		String lang = context.getRequest().getHeader("Accept-Language");
-		Content selectedContent = null;
-		for (Content content : tutorialData.getContent()) {
-			if(content.getLang().toLowerCase().equals("fr-fr")){
-				selectedContent = content;
-			}
-			if(content.getLang().toLowerCase().equals(lang)){
-				selectedContent = content;
-			}
-		}
+		Content selectedContent = TutorialModel.getContentForLang(tutorialData, lang);
+
 
 		Step selectedStep = selectedContent.getStep().get(Integer.parseInt((String) context.getParameter("step")));
 		
