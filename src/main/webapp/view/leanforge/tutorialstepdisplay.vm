@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-2">
-		<img class="img-responsive" src="$context.getConfig("imgbaseurl")/logo.png" alt="Home logo lean forge">
+		<a href="/"><img class="img-responsive" src="$context.getConfig("imgbaseurl")/logo.png" alt="Home logo lean forge"></a>
 	</div>
 	<div class="col-md-10">
 		<h1>$title <span class="pull-right">$metas.getLanguages().getCodinglang().get(0)</span></h1>
@@ -21,7 +21,56 @@
 	<div class="col-md-12">
 		<ul>
 		#foreach($substep in $tutorialStep.getSubstep())
-			<li>$substep</li>
+			<li>
+			#if ($substep.getText())
+				$substep.getText()
+			#elseif ($substep.getImg())
+				<img src="$substep.getImg().getSrc()" alt="$substep.getImg().getAlt()">
+			#elseif ($substep.getBtn())
+				<a href="$substep.getBtn().getHref()" title="$substep.getBtn().getAlt()" class="btn btn-primary">$substep.getBtn().getTitle()</a>
+			#elseif ($substep.getCode())
+				<pre>$substep.getCode()</pre>
+			#elseif ($substep.getSlider())
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			  <!-- Indicators -->
+			  <ol class="carousel-indicators">
+			  	#foreach($img in $substep.getSlider().getImg())
+			  		#set( $count = $velocityCount - 1 )
+			  		<li data-target="#carousel-example-generic" data-slide-to="$count" class="active"></li>
+			  	#end
+			  </ol>
+			
+			  <!-- Wrapper for slides -->
+			  <div class="carousel-inner">
+			  	#foreach($img in $substep.getSlider().getImg())
+			    <div class="item active">
+			      <img src="$img.getSrc()" alt="$img.getAlt()">
+			      <div class="carousel-caption">$img.getTitle()
+			      </div>
+			    </div>
+			    #end
+			  </div>
+			
+			  <!-- Controls -->
+			  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left"></span>
+			  </a>
+			  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right"></span>
+			  </a>
+			</div>
+			#elseif($substep.getMultiimg())
+			<div class="row">
+				#foreach($img in $substep.getMultiimg().getImg())
+			    <div class="col-md-3">
+			      <img src="$img.getSrc()" alt="$img.getAlt()">
+			      <div class="caption">$img.getTitle()
+			      </div>
+			    </div>
+			    #end
+			</div>
+			#end
+			</li>
 		#end
 		</ul>
 	</div>

@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.06.22 à 08:33:33 PM CEST 
+// Généré le : 2014.07.07 à 10:25:25 PM CEST 
 //
 
 
@@ -98,48 +98,58 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                           &lt;sequence>
- *                             &lt;element name="substep" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="20"/>
- *                             &lt;element name="code" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *                             &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="0"/>
- *                             &lt;element name="video" maxOccurs="unbounded" minOccurs="0">
- *                               &lt;complexType>
- *                                 &lt;complexContent>
- *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                     &lt;attribute name="src" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
- *                                     &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                     &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                   &lt;/restriction>
- *                                 &lt;/complexContent>
- *                               &lt;/complexType>
- *                             &lt;/element>
- *                             &lt;element name="btn" maxOccurs="unbounded" minOccurs="0">
- *                               &lt;complexType>
- *                                 &lt;complexContent>
- *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                     &lt;attribute name="href" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
- *                                     &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                     &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                   &lt;/restriction>
- *                                 &lt;/complexContent>
- *                               &lt;/complexType>
- *                             &lt;/element>
- *                             &lt;element name="multiimg" maxOccurs="unbounded" minOccurs="0">
+ *                             &lt;element name="substep" maxOccurs="20">
  *                               &lt;complexType>
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                     &lt;sequence>
- *                                       &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
- *                                     &lt;/sequence>
- *                                   &lt;/restriction>
- *                                 &lt;/complexContent>
- *                               &lt;/complexType>
- *                             &lt;/element>
- *                             &lt;element name="slider" maxOccurs="unbounded" minOccurs="0">
- *                               &lt;complexType>
- *                                 &lt;complexContent>
- *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                                     &lt;sequence>
- *                                       &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+ *                                       &lt;element name="text" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="code" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *                                       &lt;element name="img" type="{}img" minOccurs="0"/>
+ *                                       &lt;element name="video" minOccurs="0">
+ *                                         &lt;complexType>
+ *                                           &lt;complexContent>
+ *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                               &lt;attribute name="src" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+ *                                               &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                               &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                             &lt;/restriction>
+ *                                           &lt;/complexContent>
+ *                                         &lt;/complexType>
+ *                                       &lt;/element>
+ *                                       &lt;element name="btn" minOccurs="0">
+ *                                         &lt;complexType>
+ *                                           &lt;complexContent>
+ *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                               &lt;attribute name="href" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+ *                                               &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                               &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                                             &lt;/restriction>
+ *                                           &lt;/complexContent>
+ *                                         &lt;/complexType>
+ *                                       &lt;/element>
+ *                                       &lt;element name="multiimg" minOccurs="0">
+ *                                         &lt;complexType>
+ *                                           &lt;complexContent>
+ *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                               &lt;sequence>
+ *                                                 &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+ *                                               &lt;/sequence>
+ *                                             &lt;/restriction>
+ *                                           &lt;/complexContent>
+ *                                         &lt;/complexType>
+ *                                       &lt;/element>
+ *                                       &lt;element name="slider" minOccurs="0">
+ *                                         &lt;complexType>
+ *                                           &lt;complexContent>
+ *                                             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                               &lt;sequence>
+ *                                                 &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+ *                                               &lt;/sequence>
+ *                                             &lt;/restriction>
+ *                                           &lt;/complexContent>
+ *                                         &lt;/complexType>
+ *                                       &lt;/element>
  *                                     &lt;/sequence>
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
@@ -248,48 +258,58 @@ public class Tutorial {
      *             &lt;complexContent>
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                 &lt;sequence>
-     *                   &lt;element name="substep" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="20"/>
-     *                   &lt;element name="code" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-     *                   &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="0"/>
-     *                   &lt;element name="video" maxOccurs="unbounded" minOccurs="0">
-     *                     &lt;complexType>
-     *                       &lt;complexContent>
-     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                           &lt;attribute name="src" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
-     *                           &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                           &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                         &lt;/restriction>
-     *                       &lt;/complexContent>
-     *                     &lt;/complexType>
-     *                   &lt;/element>
-     *                   &lt;element name="btn" maxOccurs="unbounded" minOccurs="0">
-     *                     &lt;complexType>
-     *                       &lt;complexContent>
-     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                           &lt;attribute name="href" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
-     *                           &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                           &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                         &lt;/restriction>
-     *                       &lt;/complexContent>
-     *                     &lt;/complexType>
-     *                   &lt;/element>
-     *                   &lt;element name="multiimg" maxOccurs="unbounded" minOccurs="0">
+     *                   &lt;element name="substep" maxOccurs="20">
      *                     &lt;complexType>
      *                       &lt;complexContent>
      *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                           &lt;sequence>
-     *                             &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
-     *                           &lt;/sequence>
-     *                         &lt;/restriction>
-     *                       &lt;/complexContent>
-     *                     &lt;/complexType>
-     *                   &lt;/element>
-     *                   &lt;element name="slider" maxOccurs="unbounded" minOccurs="0">
-     *                     &lt;complexType>
-     *                       &lt;complexContent>
-     *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                           &lt;sequence>
-     *                             &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+     *                             &lt;element name="text" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="code" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+     *                             &lt;element name="img" type="{}img" minOccurs="0"/>
+     *                             &lt;element name="video" minOccurs="0">
+     *                               &lt;complexType>
+     *                                 &lt;complexContent>
+     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                                     &lt;attribute name="src" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+     *                                     &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                                     &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                                   &lt;/restriction>
+     *                                 &lt;/complexContent>
+     *                               &lt;/complexType>
+     *                             &lt;/element>
+     *                             &lt;element name="btn" minOccurs="0">
+     *                               &lt;complexType>
+     *                                 &lt;complexContent>
+     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                                     &lt;attribute name="href" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+     *                                     &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                                     &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *                                   &lt;/restriction>
+     *                                 &lt;/complexContent>
+     *                               &lt;/complexType>
+     *                             &lt;/element>
+     *                             &lt;element name="multiimg" minOccurs="0">
+     *                               &lt;complexType>
+     *                                 &lt;complexContent>
+     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                                     &lt;sequence>
+     *                                       &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+     *                                     &lt;/sequence>
+     *                                   &lt;/restriction>
+     *                                 &lt;/complexContent>
+     *                               &lt;/complexType>
+     *                             &lt;/element>
+     *                             &lt;element name="slider" minOccurs="0">
+     *                               &lt;complexType>
+     *                                 &lt;complexContent>
+     *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                                     &lt;sequence>
+     *                                       &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+     *                                     &lt;/sequence>
+     *                                   &lt;/restriction>
+     *                                 &lt;/complexContent>
+     *                               &lt;/complexType>
+     *                             &lt;/element>
      *                           &lt;/sequence>
      *                         &lt;/restriction>
      *                       &lt;/complexContent>
@@ -418,48 +438,58 @@ public class Tutorial {
          *   &lt;complexContent>
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *       &lt;sequence>
-         *         &lt;element name="substep" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="20"/>
-         *         &lt;element name="code" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
-         *         &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="0"/>
-         *         &lt;element name="video" maxOccurs="unbounded" minOccurs="0">
-         *           &lt;complexType>
-         *             &lt;complexContent>
-         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                 &lt;attribute name="src" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
-         *                 &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *                 &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *               &lt;/restriction>
-         *             &lt;/complexContent>
-         *           &lt;/complexType>
-         *         &lt;/element>
-         *         &lt;element name="btn" maxOccurs="unbounded" minOccurs="0">
-         *           &lt;complexType>
-         *             &lt;complexContent>
-         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                 &lt;attribute name="href" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
-         *                 &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *                 &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *               &lt;/restriction>
-         *             &lt;/complexContent>
-         *           &lt;/complexType>
-         *         &lt;/element>
-         *         &lt;element name="multiimg" maxOccurs="unbounded" minOccurs="0">
+         *         &lt;element name="substep" maxOccurs="20">
          *           &lt;complexType>
          *             &lt;complexContent>
          *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *                 &lt;sequence>
-         *                   &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
-         *                 &lt;/sequence>
-         *               &lt;/restriction>
-         *             &lt;/complexContent>
-         *           &lt;/complexType>
-         *         &lt;/element>
-         *         &lt;element name="slider" maxOccurs="unbounded" minOccurs="0">
-         *           &lt;complexType>
-         *             &lt;complexContent>
-         *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *                 &lt;sequence>
-         *                   &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+         *                   &lt;element name="text" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="code" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+         *                   &lt;element name="img" type="{}img" minOccurs="0"/>
+         *                   &lt;element name="video" minOccurs="0">
+         *                     &lt;complexType>
+         *                       &lt;complexContent>
+         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                           &lt;attribute name="src" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+         *                           &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                           &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                         &lt;/restriction>
+         *                       &lt;/complexContent>
+         *                     &lt;/complexType>
+         *                   &lt;/element>
+         *                   &lt;element name="btn" minOccurs="0">
+         *                     &lt;complexType>
+         *                       &lt;complexContent>
+         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                           &lt;attribute name="href" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+         *                           &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                           &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+         *                         &lt;/restriction>
+         *                       &lt;/complexContent>
+         *                     &lt;/complexType>
+         *                   &lt;/element>
+         *                   &lt;element name="multiimg" minOccurs="0">
+         *                     &lt;complexType>
+         *                       &lt;complexContent>
+         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                           &lt;sequence>
+         *                             &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+         *                           &lt;/sequence>
+         *                         &lt;/restriction>
+         *                       &lt;/complexContent>
+         *                     &lt;/complexType>
+         *                   &lt;/element>
+         *                   &lt;element name="slider" minOccurs="0">
+         *                     &lt;complexType>
+         *                       &lt;complexContent>
+         *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                           &lt;sequence>
+         *                             &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+         *                           &lt;/sequence>
+         *                         &lt;/restriction>
+         *                       &lt;/complexContent>
+         *                     &lt;/complexType>
+         *                   &lt;/element>
          *                 &lt;/sequence>
          *               &lt;/restriction>
          *             &lt;/complexContent>
@@ -476,24 +506,12 @@ public class Tutorial {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
-            "substep",
-            "code",
-            "img",
-            "video",
-            "btn",
-            "multiimg",
-            "slider"
+            "substep"
         })
         public static class Step {
 
             @XmlElement(required = true)
-            protected List<String> substep;
-            protected List<String> code;
-            protected List<Img> img;
-            protected List<Tutorial.Content.Step.Video> video;
-            protected List<Tutorial.Content.Step.Btn> btn;
-            protected List<Tutorial.Content.Step.Multiimg> multiimg;
-            protected List<Tutorial.Content.Step.Slider> slider;
+            protected List<Tutorial.Content.Step.Substep> substep;
             @XmlAttribute(name = "name", required = true)
             protected String name;
 
@@ -515,189 +533,15 @@ public class Tutorial {
              * 
              * <p>
              * Objects of the following type(s) are allowed in the list
-             * {@link String }
+             * {@link Tutorial.Content.Step.Substep }
              * 
              * 
              */
-            public List<String> getSubstep() {
+            public List<Tutorial.Content.Step.Substep> getSubstep() {
                 if (substep == null) {
-                    substep = new ArrayList<String>();
+                    substep = new ArrayList<Tutorial.Content.Step.Substep>();
                 }
                 return this.substep;
-            }
-
-            /**
-             * Gets the value of the code property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the code property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getCode().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link String }
-             * 
-             * 
-             */
-            public List<String> getCode() {
-                if (code == null) {
-                    code = new ArrayList<String>();
-                }
-                return this.code;
-            }
-
-            /**
-             * Gets the value of the img property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the img property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getImg().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link Img }
-             * 
-             * 
-             */
-            public List<Img> getImg() {
-                if (img == null) {
-                    img = new ArrayList<Img>();
-                }
-                return this.img;
-            }
-
-            /**
-             * Gets the value of the video property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the video property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getVideo().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link Tutorial.Content.Step.Video }
-             * 
-             * 
-             */
-            public List<Tutorial.Content.Step.Video> getVideo() {
-                if (video == null) {
-                    video = new ArrayList<Tutorial.Content.Step.Video>();
-                }
-                return this.video;
-            }
-
-            /**
-             * Gets the value of the btn property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the btn property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getBtn().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link Tutorial.Content.Step.Btn }
-             * 
-             * 
-             */
-            public List<Tutorial.Content.Step.Btn> getBtn() {
-                if (btn == null) {
-                    btn = new ArrayList<Tutorial.Content.Step.Btn>();
-                }
-                return this.btn;
-            }
-
-            /**
-             * Gets the value of the multiimg property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the multiimg property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getMultiimg().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link Tutorial.Content.Step.Multiimg }
-             * 
-             * 
-             */
-            public List<Tutorial.Content.Step.Multiimg> getMultiimg() {
-                if (multiimg == null) {
-                    multiimg = new ArrayList<Tutorial.Content.Step.Multiimg>();
-                }
-                return this.multiimg;
-            }
-
-            /**
-             * Gets the value of the slider property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the slider property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getSlider().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link Tutorial.Content.Step.Slider }
-             * 
-             * 
-             */
-            public List<Tutorial.Content.Step.Slider> getSlider() {
-                if (slider == null) {
-                    slider = new ArrayList<Tutorial.Content.Step.Slider>();
-                }
-                return this.slider;
             }
 
             /**
@@ -734,114 +578,54 @@ public class Tutorial {
              * &lt;complexType>
              *   &lt;complexContent>
              *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *       &lt;attribute name="href" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
-             *       &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *       &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *     &lt;/restriction>
-             *   &lt;/complexContent>
-             * &lt;/complexType>
-             * </pre>
-             * 
-             * 
-             */
-            @XmlAccessorType(XmlAccessType.FIELD)
-            @XmlType(name = "")
-            public static class Btn {
-
-                @XmlAttribute(name = "href", required = true)
-                @XmlSchemaType(name = "anyURI")
-                protected String href;
-                @XmlAttribute(name = "title", required = true)
-                protected String title;
-                @XmlAttribute(name = "alt", required = true)
-                protected String alt;
-
-                /**
-                 * Obtient la valeur de la propriété href.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
-                 */
-                public String getHref() {
-                    return href;
-                }
-
-                /**
-                 * Définit la valeur de la propriété href.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setHref(String value) {
-                    this.href = value;
-                }
-
-                /**
-                 * Obtient la valeur de la propriété title.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
-                 */
-                public String getTitle() {
-                    return title;
-                }
-
-                /**
-                 * Définit la valeur de la propriété title.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setTitle(String value) {
-                    this.title = value;
-                }
-
-                /**
-                 * Obtient la valeur de la propriété alt.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
-                 */
-                public String getAlt() {
-                    return alt;
-                }
-
-                /**
-                 * Définit la valeur de la propriété alt.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setAlt(String value) {
-                    this.alt = value;
-                }
-
-            }
-
-
-            /**
-             * <p>Classe Java pour anonymous complex type.
-             * 
-             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-             * 
-             * <pre>
-             * &lt;complexType>
-             *   &lt;complexContent>
-             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
              *       &lt;sequence>
-             *         &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+             *         &lt;element name="text" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="code" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+             *         &lt;element name="img" type="{}img" minOccurs="0"/>
+             *         &lt;element name="video" minOccurs="0">
+             *           &lt;complexType>
+             *             &lt;complexContent>
+             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *                 &lt;attribute name="src" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+             *                 &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *                 &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *               &lt;/restriction>
+             *             &lt;/complexContent>
+             *           &lt;/complexType>
+             *         &lt;/element>
+             *         &lt;element name="btn" minOccurs="0">
+             *           &lt;complexType>
+             *             &lt;complexContent>
+             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *                 &lt;attribute name="href" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+             *                 &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *                 &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+             *               &lt;/restriction>
+             *             &lt;/complexContent>
+             *           &lt;/complexType>
+             *         &lt;/element>
+             *         &lt;element name="multiimg" minOccurs="0">
+             *           &lt;complexType>
+             *             &lt;complexContent>
+             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *                 &lt;sequence>
+             *                   &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+             *                 &lt;/sequence>
+             *               &lt;/restriction>
+             *             &lt;/complexContent>
+             *           &lt;/complexType>
+             *         &lt;/element>
+             *         &lt;element name="slider" minOccurs="0">
+             *           &lt;complexType>
+             *             &lt;complexContent>
+             *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *                 &lt;sequence>
+             *                   &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+             *                 &lt;/sequence>
+             *               &lt;/restriction>
+             *             &lt;/complexContent>
+             *           &lt;/complexType>
+             *         &lt;/element>
              *       &lt;/sequence>
              *     &lt;/restriction>
              *   &lt;/complexContent>
@@ -852,206 +636,522 @@ public class Tutorial {
              */
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "", propOrder = {
-                "img"
+                "text",
+                "code",
+                "img",
+                "video",
+                "btn",
+                "multiimg",
+                "slider"
             })
-            public static class Multiimg {
+            public static class Substep {
 
-                @XmlElement(required = true)
-                protected List<Img> img;
+                protected String text;
+                protected String code;
+                protected Img img;
+                protected Tutorial.Content.Step.Substep.Video video;
+                protected Tutorial.Content.Step.Substep.Btn btn;
+                protected Tutorial.Content.Step.Substep.Multiimg multiimg;
+                protected Tutorial.Content.Step.Substep.Slider slider;
 
                 /**
-                 * Gets the value of the img property.
+                 * Obtient la valeur de la propriété text.
                  * 
-                 * <p>
-                 * This accessor method returns a reference to the live list,
-                 * not a snapshot. Therefore any modification you make to the
-                 * returned list will be present inside the JAXB object.
-                 * This is why there is not a <CODE>set</CODE> method for the img property.
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getText() {
+                    return text;
+                }
+
+                /**
+                 * Définit la valeur de la propriété text.
                  * 
-                 * <p>
-                 * For example, to add a new item, do as follows:
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setText(String value) {
+                    this.text = value;
+                }
+
+                /**
+                 * Obtient la valeur de la propriété code.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link String }
+                 *     
+                 */
+                public String getCode() {
+                    return code;
+                }
+
+                /**
+                 * Définit la valeur de la propriété code.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link String }
+                 *     
+                 */
+                public void setCode(String value) {
+                    this.code = value;
+                }
+
+                /**
+                 * Obtient la valeur de la propriété img.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Img }
+                 *     
+                 */
+                public Img getImg() {
+                    return img;
+                }
+
+                /**
+                 * Définit la valeur de la propriété img.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Img }
+                 *     
+                 */
+                public void setImg(Img value) {
+                    this.img = value;
+                }
+
+                /**
+                 * Obtient la valeur de la propriété video.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Tutorial.Content.Step.Substep.Video }
+                 *     
+                 */
+                public Tutorial.Content.Step.Substep.Video getVideo() {
+                    return video;
+                }
+
+                /**
+                 * Définit la valeur de la propriété video.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Tutorial.Content.Step.Substep.Video }
+                 *     
+                 */
+                public void setVideo(Tutorial.Content.Step.Substep.Video value) {
+                    this.video = value;
+                }
+
+                /**
+                 * Obtient la valeur de la propriété btn.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Tutorial.Content.Step.Substep.Btn }
+                 *     
+                 */
+                public Tutorial.Content.Step.Substep.Btn getBtn() {
+                    return btn;
+                }
+
+                /**
+                 * Définit la valeur de la propriété btn.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Tutorial.Content.Step.Substep.Btn }
+                 *     
+                 */
+                public void setBtn(Tutorial.Content.Step.Substep.Btn value) {
+                    this.btn = value;
+                }
+
+                /**
+                 * Obtient la valeur de la propriété multiimg.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Tutorial.Content.Step.Substep.Multiimg }
+                 *     
+                 */
+                public Tutorial.Content.Step.Substep.Multiimg getMultiimg() {
+                    return multiimg;
+                }
+
+                /**
+                 * Définit la valeur de la propriété multiimg.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Tutorial.Content.Step.Substep.Multiimg }
+                 *     
+                 */
+                public void setMultiimg(Tutorial.Content.Step.Substep.Multiimg value) {
+                    this.multiimg = value;
+                }
+
+                /**
+                 * Obtient la valeur de la propriété slider.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link Tutorial.Content.Step.Substep.Slider }
+                 *     
+                 */
+                public Tutorial.Content.Step.Substep.Slider getSlider() {
+                    return slider;
+                }
+
+                /**
+                 * Définit la valeur de la propriété slider.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Tutorial.Content.Step.Substep.Slider }
+                 *     
+                 */
+                public void setSlider(Tutorial.Content.Step.Substep.Slider value) {
+                    this.slider = value;
+                }
+
+
+                /**
+                 * <p>Classe Java pour anonymous complex type.
+                 * 
+                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+                 * 
                  * <pre>
-                 *    getImg().add(newItem);
+                 * &lt;complexType>
+                 *   &lt;complexContent>
+                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+                 *       &lt;attribute name="href" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+                 *       &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                 *       &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                 *     &lt;/restriction>
+                 *   &lt;/complexContent>
+                 * &lt;/complexType>
                  * </pre>
                  * 
                  * 
-                 * <p>
-                 * Objects of the following type(s) are allowed in the list
-                 * {@link Img }
-                 * 
-                 * 
                  */
-                public List<Img> getImg() {
-                    if (img == null) {
-                        img = new ArrayList<Img>();
+                @XmlAccessorType(XmlAccessType.FIELD)
+                @XmlType(name = "")
+                public static class Btn {
+
+                    @XmlAttribute(name = "href", required = true)
+                    @XmlSchemaType(name = "anyURI")
+                    protected String href;
+                    @XmlAttribute(name = "title", required = true)
+                    protected String title;
+                    @XmlAttribute(name = "alt", required = true)
+                    protected String alt;
+
+                    /**
+                     * Obtient la valeur de la propriété href.
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getHref() {
+                        return href;
                     }
-                    return this.img;
+
+                    /**
+                     * Définit la valeur de la propriété href.
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setHref(String value) {
+                        this.href = value;
+                    }
+
+                    /**
+                     * Obtient la valeur de la propriété title.
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getTitle() {
+                        return title;
+                    }
+
+                    /**
+                     * Définit la valeur de la propriété title.
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setTitle(String value) {
+                        this.title = value;
+                    }
+
+                    /**
+                     * Obtient la valeur de la propriété alt.
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getAlt() {
+                        return alt;
+                    }
+
+                    /**
+                     * Définit la valeur de la propriété alt.
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setAlt(String value) {
+                        this.alt = value;
+                    }
+
                 }
 
-            }
-
-
-            /**
-             * <p>Classe Java pour anonymous complex type.
-             * 
-             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-             * 
-             * <pre>
-             * &lt;complexType>
-             *   &lt;complexContent>
-             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *       &lt;sequence>
-             *         &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
-             *       &lt;/sequence>
-             *     &lt;/restriction>
-             *   &lt;/complexContent>
-             * &lt;/complexType>
-             * </pre>
-             * 
-             * 
-             */
-            @XmlAccessorType(XmlAccessType.FIELD)
-            @XmlType(name = "", propOrder = {
-                "img"
-            })
-            public static class Slider {
-
-                @XmlElement(required = true)
-                protected List<Img> img;
 
                 /**
-                 * Gets the value of the img property.
+                 * <p>Classe Java pour anonymous complex type.
                  * 
-                 * <p>
-                 * This accessor method returns a reference to the live list,
-                 * not a snapshot. Therefore any modification you make to the
-                 * returned list will be present inside the JAXB object.
-                 * This is why there is not a <CODE>set</CODE> method for the img property.
+                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
                  * 
-                 * <p>
-                 * For example, to add a new item, do as follows:
                  * <pre>
-                 *    getImg().add(newItem);
+                 * &lt;complexType>
+                 *   &lt;complexContent>
+                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+                 *       &lt;sequence>
+                 *         &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+                 *       &lt;/sequence>
+                 *     &lt;/restriction>
+                 *   &lt;/complexContent>
+                 * &lt;/complexType>
                  * </pre>
                  * 
                  * 
-                 * <p>
-                 * Objects of the following type(s) are allowed in the list
-                 * {@link Img }
-                 * 
-                 * 
                  */
-                public List<Img> getImg() {
-                    if (img == null) {
-                        img = new ArrayList<Img>();
+                @XmlAccessorType(XmlAccessType.FIELD)
+                @XmlType(name = "", propOrder = {
+                    "img"
+                })
+                public static class Multiimg {
+
+                    @XmlElement(required = true)
+                    protected List<Img> img;
+
+                    /**
+                     * Gets the value of the img property.
+                     * 
+                     * <p>
+                     * This accessor method returns a reference to the live list,
+                     * not a snapshot. Therefore any modification you make to the
+                     * returned list will be present inside the JAXB object.
+                     * This is why there is not a <CODE>set</CODE> method for the img property.
+                     * 
+                     * <p>
+                     * For example, to add a new item, do as follows:
+                     * <pre>
+                     *    getImg().add(newItem);
+                     * </pre>
+                     * 
+                     * 
+                     * <p>
+                     * Objects of the following type(s) are allowed in the list
+                     * {@link Img }
+                     * 
+                     * 
+                     */
+                    public List<Img> getImg() {
+                        if (img == null) {
+                            img = new ArrayList<Img>();
+                        }
+                        return this.img;
                     }
-                    return this.img;
+
                 }
 
-            }
-
-
-            /**
-             * <p>Classe Java pour anonymous complex type.
-             * 
-             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-             * 
-             * <pre>
-             * &lt;complexType>
-             *   &lt;complexContent>
-             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-             *       &lt;attribute name="src" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
-             *       &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *       &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *     &lt;/restriction>
-             *   &lt;/complexContent>
-             * &lt;/complexType>
-             * </pre>
-             * 
-             * 
-             */
-            @XmlAccessorType(XmlAccessType.FIELD)
-            @XmlType(name = "")
-            public static class Video {
-
-                @XmlAttribute(name = "src", required = true)
-                @XmlSchemaType(name = "anyURI")
-                protected String src;
-                @XmlAttribute(name = "title", required = true)
-                protected String title;
-                @XmlAttribute(name = "alt", required = true)
-                protected String alt;
 
                 /**
-                 * Obtient la valeur de la propriété src.
+                 * <p>Classe Java pour anonymous complex type.
                  * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+                 * 
+                 * <pre>
+                 * &lt;complexType>
+                 *   &lt;complexContent>
+                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+                 *       &lt;sequence>
+                 *         &lt;element name="img" type="{}img" maxOccurs="unbounded" minOccurs="2"/>
+                 *       &lt;/sequence>
+                 *     &lt;/restriction>
+                 *   &lt;/complexContent>
+                 * &lt;/complexType>
+                 * </pre>
+                 * 
+                 * 
                  */
-                public String getSrc() {
-                    return src;
+                @XmlAccessorType(XmlAccessType.FIELD)
+                @XmlType(name = "", propOrder = {
+                    "img"
+                })
+                public static class Slider {
+
+                    @XmlElement(required = true)
+                    protected List<Img> img;
+
+                    /**
+                     * Gets the value of the img property.
+                     * 
+                     * <p>
+                     * This accessor method returns a reference to the live list,
+                     * not a snapshot. Therefore any modification you make to the
+                     * returned list will be present inside the JAXB object.
+                     * This is why there is not a <CODE>set</CODE> method for the img property.
+                     * 
+                     * <p>
+                     * For example, to add a new item, do as follows:
+                     * <pre>
+                     *    getImg().add(newItem);
+                     * </pre>
+                     * 
+                     * 
+                     * <p>
+                     * Objects of the following type(s) are allowed in the list
+                     * {@link Img }
+                     * 
+                     * 
+                     */
+                    public List<Img> getImg() {
+                        if (img == null) {
+                            img = new ArrayList<Img>();
+                        }
+                        return this.img;
+                    }
+
                 }
 
-                /**
-                 * Définit la valeur de la propriété src.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setSrc(String value) {
-                    this.src = value;
-                }
 
                 /**
-                 * Obtient la valeur de la propriété title.
+                 * <p>Classe Java pour anonymous complex type.
                  * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
+                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+                 * 
+                 * <pre>
+                 * &lt;complexType>
+                 *   &lt;complexContent>
+                 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+                 *       &lt;attribute name="src" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" />
+                 *       &lt;attribute name="title" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                 *       &lt;attribute name="alt" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+                 *     &lt;/restriction>
+                 *   &lt;/complexContent>
+                 * &lt;/complexType>
+                 * </pre>
+                 * 
+                 * 
                  */
-                public String getTitle() {
-                    return title;
-                }
+                @XmlAccessorType(XmlAccessType.FIELD)
+                @XmlType(name = "")
+                public static class Video {
 
-                /**
-                 * Définit la valeur de la propriété title.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setTitle(String value) {
-                    this.title = value;
-                }
+                    @XmlAttribute(name = "src", required = true)
+                    @XmlSchemaType(name = "anyURI")
+                    protected String src;
+                    @XmlAttribute(name = "title", required = true)
+                    protected String title;
+                    @XmlAttribute(name = "alt", required = true)
+                    protected String alt;
 
-                /**
-                 * Obtient la valeur de la propriété alt.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
-                 */
-                public String getAlt() {
-                    return alt;
-                }
+                    /**
+                     * Obtient la valeur de la propriété src.
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getSrc() {
+                        return src;
+                    }
 
-                /**
-                 * Définit la valeur de la propriété alt.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setAlt(String value) {
-                    this.alt = value;
+                    /**
+                     * Définit la valeur de la propriété src.
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setSrc(String value) {
+                        this.src = value;
+                    }
+
+                    /**
+                     * Obtient la valeur de la propriété title.
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getTitle() {
+                        return title;
+                    }
+
+                    /**
+                     * Définit la valeur de la propriété title.
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setTitle(String value) {
+                        this.title = value;
+                    }
+
+                    /**
+                     * Obtient la valeur de la propriété alt.
+                     * 
+                     * @return
+                     *     possible object is
+                     *     {@link String }
+                     *     
+                     */
+                    public String getAlt() {
+                        return alt;
+                    }
+
+                    /**
+                     * Définit la valeur de la propriété alt.
+                     * 
+                     * @param value
+                     *     allowed object is
+                     *     {@link String }
+                     *     
+                     */
+                    public void setAlt(String value) {
+                        this.alt = value;
+                    }
+
                 }
 
             }

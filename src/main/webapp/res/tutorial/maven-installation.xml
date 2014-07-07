@@ -17,54 +17,53 @@
   <content lang="en-US">
     <title><![CDATA[Tutorial Name]]></title>
     <step name="First Step">
-      <substep><![CDATA[
+      <substep><text><![CDATA[
         My first text line. <a class="btn btn-default" href="http://download.software.com/">Download</a>
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><text><![CDATA[
         Unzip the downloaded file.
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><text><![CDATA[
         Launch executable file "sample.exe"
-      ]]></substep>
+      ]]></text></substep>
     </step>
     <step name="Second Step">
-      <substep><![CDATA[
+      <substep><text><![CDATA[
         Go to the configuration menu
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><text><![CDATA[
         Configure this settings : .
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><text><![CDATA[
         Then click on start button.
-      ]]></substep>
+      ]]></text></substep>
     </step>
   </content>
   <content lang="fr-FR">
     <title><![CDATA[Installation de Maven]]></title>
     <step name="First Step">
-      <substep><![CDATA[
-        Pour linux l'installation de Maven est relativement simple car un packet est présent sur les dépôts de la majorité des 
-distributions.
+      <substep><text><![CDATA[
+        Pour linux l'installation de Maven est relativement simple car un packet est présent sur les dépôts de la majorité des distributions.
         Cliquez sur le lien suivant : <a href="apt://maven">Maven via APT</a>
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><text><![CDATA[
         Si le lien ci-dessus ne fonctionne pas vous pouvez ouvrir un terminal et saisir : "apt-get install maven"
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><text><![CDATA[
         Maintenant que vous avez installé Maven, vous pouvez dès à présent vérifier qu'il est fonctionnel en tappant dans un terminal : "mvn --version".
         Les lignes suivantes s'afficheront.
-      ]]></substep>
+      ]]></text></substep>
     </step>
     <step name="Second Step">
-      <substep><![CDATA[
+      <substep><text><![CDATA[
         Go to the configuration menu
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><text><![CDATA[
         Configure this settings : .
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><text><![CDATA[
         Then click on start button.
-      ]]></substep>
+      ]]></text></substep>
     </step>
   </content>
 </tutorial>

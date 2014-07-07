@@ -14,54 +14,31 @@
     </categories>
     <keywords><![CDATA[java,install,keyword1]]></keywords>
   </meta>
-  <content lang="en-US">
-    <title><![CDATA[Tutorial Name]]></title>
-    <step name="First Step">
-      <substep><![CDATA[
-        My first text line. <a class="btn btn-default" href="http://download.software.com/">Download</a>
-      ]]></substep>
-      <substep><![CDATA[
-        Unzip the downloaded file.
-      ]]></substep>
-      <substep><![CDATA[
-        Launch executable file "sample.exe"
-      ]]></substep>
-    </step>
-    <step name="Second Step">
-      <substep><![CDATA[
-        Go to the configuration menu
-      ]]></substep>
-      <substep><![CDATA[
-        Configure this settings : .
-      ]]></substep>
-      <substep><![CDATA[
-        Then click on start button.
-      ]]></substep>
-    </step>
-  </content>
   <content lang="fr-FR">
     <title><![CDATA[Installation Maven]]></title>
     <step name="First Step">
-      <substep><![CDATA[
+      <substep><text><![CDATA[
         My first text line. <a class="btn btn-default" href="http://download.software.com/">Download</a>
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><btn href="http://download.software.com/" title="Download" alt="" />
+      </substep>
+      <substep><text><![CDATA[
         Unzip the downloaded file.
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><text><![CDATA[
         Launch executable file "sample.exe"
-      ]]></substep>
+      ]]></text></substep>
     </step>
     <step name="Second Step">
-      <substep><![CDATA[
+      <substep><text><![CDATA[
         Go to the configuration menu
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><text><![CDATA[
         Configure this settings : .
-      ]]></substep>
-      <substep><![CDATA[
+      ]]></text></substep>
+      <substep><text><![CDATA[
         Then click on start button.
-      ]]></substep>
+      ]]></text></substep>
     </step>
   </content>
 </tutorial>

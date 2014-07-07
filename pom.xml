@@ -92,7 +92,7 @@
           </executions>
           <configuration>
               <packageName>dev.leanforge.tutorialschema</packageName> <!-- The name of your generated source package -->
-              <schemaDirectory>${project.basedir}/src/resources/xsd</schemaDirectory>
+              <schemaDirectory>${project.basedir}/src/main/resources/xsd</schemaDirectory>
               <clearOutputDir>false</clearOutputDir>
               <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
           </configuration>

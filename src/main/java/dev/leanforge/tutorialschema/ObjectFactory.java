@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.7 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.06.22 à 08:33:33 PM CEST 
+// Généré le : 2014.07.07 à 10:25:25 PM CEST 
 //
 
 
@@ -61,6 +61,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Tutorial.Content.Step.Substep }
+     * 
+     */
+    public Tutorial.Content.Step.Substep createTutorialContentStepSubstep() {
+        return new Tutorial.Content.Step.Substep();
+    }
+
+    /**
      * Create an instance of {@link Tutorial.Meta }
      * 
      */
@@ -85,35 +93,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Tutorial.Content.Step.Video }
+     * Create an instance of {@link Tutorial.Content.Step.Substep.Video }
      * 
      */
-    public Tutorial.Content.Step.Video createTutorialContentStepVideo() {
-        return new Tutorial.Content.Step.Video();
+    public Tutorial.Content.Step.Substep.Video createTutorialContentStepSubstepVideo() {
+        return new Tutorial.Content.Step.Substep.Video();
     }
 
     /**
-     * Create an instance of {@link Tutorial.Content.Step.Btn }
+     * Create an instance of {@link Tutorial.Content.Step.Substep.Btn }
      * 
      */
-    public Tutorial.Content.Step.Btn createTutorialContentStepBtn() {
-        return new Tutorial.Content.Step.Btn();
+    public Tutorial.Content.Step.Substep.Btn createTutorialContentStepSubstepBtn() {
+        return new Tutorial.Content.Step.Substep.Btn();
     }
 
     /**
-     * Create an instance of {@link Tutorial.Content.Step.Multiimg }
+     * Create an instance of {@link Tutorial.Content.Step.Substep.Multiimg }
      * 
      */
-    public Tutorial.Content.Step.Multiimg createTutorialContentStepMultiimg() {
-        return new Tutorial.Content.Step.Multiimg();
+    public Tutorial.Content.Step.Substep.Multiimg createTutorialContentStepSubstepMultiimg() {
+        return new Tutorial.Content.Step.Substep.Multiimg();
     }
 
     /**
-     * Create an instance of {@link Tutorial.Content.Step.Slider }
+     * Create an instance of {@link Tutorial.Content.Step.Substep.Slider }
      * 
      */
-    public Tutorial.Content.Step.Slider createTutorialContentStepSlider() {
-        return new Tutorial.Content.Step.Slider();
+    public Tutorial.Content.Step.Substep.Slider createTutorialContentStepSubstepSlider() {
+        return new Tutorial.Content.Step.Substep.Slider();
     }
 
     /**
