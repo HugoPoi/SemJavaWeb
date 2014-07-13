@@ -1,12 +1,12 @@
 <div class="row">
 	<div class="col-md-offset-4 col-md-4">
-		<img class="img-responsive" src="$context.getConfig("imgbaseurl")/logo.png" alt="Home logo lean forge">
+		<a href="/"><img class="img-responsive" src="$context.getConfig("imgbaseurl")/logo.png" alt="Home logo lean forge"></a>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-offset-4 col-md-4">
 		<a class="btn btn-block btn-primary btn-lg" href="$context.getConfig("context")/categories">Start coding</a>
 		or
-		<a class="btn btn-block btn-primary" href="#">Discover the Leané</a>
+		<a class="btn btn-block btn-primary" href="#">Discover the Lean</a>
 	</div>
 </div>

@@ -1,9 +1,12 @@
 package org.esgi.web.action;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.velocity.VelocityContext;
+import org.esgi.orm.model.User;
 
 public interface IContext {
 
@@ -25,4 +28,8 @@ public interface IContext {
 	void addInlineCSS(String cssRule);
 	void addRawHeader(String rawHeadLine);
 	void addOnJsReady(String str);
+	User getConnectedUser();
+	void setConnectedUser(User in);
+	Map<String,String> getErrors();
+	void addError(String identifier, String message);
 }

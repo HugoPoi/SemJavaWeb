@@ -3,17 +3,14 @@ package org.esgi.module.user;
 import org.esgi.web.action.AbstractAction;
 import org.esgi.web.action.IContext;
 
-public class Connect extends AbstractAction{
+public class Administration extends AbstractAction{
+	
 	@Override
 	public String getRoute() {
-		return "/user/connect";
+		return "/manager";
 	}
-	@Override
-	public String getLayout() {
-		return null;
-	}
-	@Override
+	
 	public void execute(IContext context) throws Exception {
-		System.out.println(context.getRequest().getParameter("login"));
+		System.out.println(context.getConnectedUser().login);
 	}
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.velocity.VelocityContext;
+import org.esgi.orm.model.User;
 import org.esgi.web.action.IContext;
 
 public class Context implements IContext {
@@ -24,6 +25,7 @@ public class Context implements IContext {
 	
 	Map<String, Object> mapParameters;
 	Map<String, Object> mapFragments;
+	Map<String, String> errors;
 	
 	public String pageTitle;
 	public String pageMetaDescription;
@@ -45,6 +47,7 @@ public class Context implements IContext {
 		mapParameters = new HashMap<>();
 		mapFragments = new HashMap<>();
 		keywords = new ArrayList<String>();
+		errors = new HashMap<String, String>();
 		
 		jsUrls = new TreeSet<String>();
 		cssUrls = new TreeSet<String>();
@@ -163,6 +166,29 @@ public class Context implements IContext {
 	}
 	public Set<String> getJsUrls() {
 		return jsUrls;
+	}
+	
+	public User getConnectedUser(){
+		User currentUser = (User) this.request.getSession().getAttribute("user");
+		if(currentUser != null){
+			return currentUser;
+		}
+		return null;
+	}
+
+	@Override
+	public void setConnectedUser(User in) {
+		this.request.getSession().setAttribute("user", in);
+	}
+
+	@Override
+	public Map<String, String> getErrors() {
+		return errors;
+	}
+
+	@Override
+	public void addError(String identifier, String message) {
+		errors.put(identifier, message);
 	}
 	
 

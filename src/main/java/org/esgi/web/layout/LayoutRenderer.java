@@ -42,6 +42,8 @@ public class LayoutRenderer {
 				a.execute(context);
 			}
 			
+		}
+		for (String layoutDependence : layoutDependencies){
 			//Vérification de l'exitense du template et retour de celui-ci
 			String templateFile = this.checkTemplateFile(layoutDependence, action, context);
 			
@@ -51,8 +53,7 @@ public class LayoutRenderer {
 				StringWriter renderedTemplate = new StringWriter();
 				actionTemplate.merge(context.getVelocityContext(), renderedTemplate);
 				context.setFragment(layoutDependence, renderedTemplate);
-					
-			}	
+			}
 		}
 		
 		//Impression à l'écran de la vue racine (ici shared/html) 

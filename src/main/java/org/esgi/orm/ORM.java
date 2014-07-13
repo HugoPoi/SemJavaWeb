@@ -35,9 +35,9 @@ public class ORM implements IORM {
 	static {
 		instance = new ORM();
 		mysqlHost = "localhost";
-		mysqlDatabase = "esgi";
-		mysqlUser = "root";
-		mysqlPassword = "";
+		mysqlDatabase = "leanforge";
+		mysqlUser = "leanforge";
+		mysqlPassword = "QQeNaDrtUjfB3uPP";
 		alreadyChecked = new HashSet<>();
 	}
 
@@ -52,6 +52,10 @@ public class ORM implements IORM {
 	public static boolean remove(Class<?> c, Object id) {
 		return instance._remove(c, id);
 	}
+	
+	public static List<Object> find(Class<?> c, String[] projections, Map<String, Object> where, String[] orderby, Integer limit, Integer offset){
+		return instance._find(c, projections, where, orderby, limit, offset);
+	}
 
 	public static String createConnectionString() {
 		return "jdbc:mysql://" + mysqlHost + "/" + mysqlDatabase;
@@ -60,7 +64,7 @@ public class ORM implements IORM {
 	public static Connection createConnectionObject() {
 		Connection connection;
 		try {
-			Class.forName("org.gjt.mm.mysql.Driver").newInstance();
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -135,8 +139,7 @@ public class ORM implements IORM {
 			whereClause.put(getPrimaryKey(o).getName(), pkObj);
 			// Check if the object exists in database
 			List<Object> rid = makeSelect(o.getClass(), new String[] { pkField
-					.getName().toString() }, whereClause, new String[] {}, 1,
-					0, connection);
+					.getName().toString() }, whereClause, new String[] {}, 1, null, connection);
 			if (rid.size() != 0) {
 				// Object already exists: UPDATE
 				return makeUpdate(o, connection);
@@ -303,7 +306,7 @@ public class ORM implements IORM {
 				makeCreateTable(c, connection);
 			} catch (SQLException e) {
 				if(e.getMessage().indexOf("already exists") != -1){
-					makeAlterTable(c, connection);
+					//makeAlterTable(c, connection);
 				}else{
 					throw e;
 				}
@@ -377,7 +380,7 @@ public class ORM implements IORM {
 		query.append("UPDATE `" + getTableName(o.getClass()) + "` SET ");
 
 		Boolean first = true;
-		for (Field objectField : o.getClass().getFields()) {
+		for (Field objectField : o.getClass().getDeclaredFields()) {
 
 			if (Modifier.isVolatile(objectField.getModifiers()))
 				continue;
@@ -394,10 +397,12 @@ public class ORM implements IORM {
 		query.append(" WHERE `" + getFieldName(getPrimaryKey(o)) + "` = ?");
 
 		try {
+			System.out.println(query.toString());
 			PreparedStatement updateStatement = connection
 					.prepareStatement(query.toString());
 			int fieldn = 1;
-			for (Field objectField : o.getClass().getFields()) {
+			for (Field objectField : o.getClass().getDeclaredFields()) {
+				objectField.setAccessible(true);
 				if (Modifier.isVolatile(objectField.getModifiers()))
 					continue;
 				if (objectField.getAnnotation(ORM_PK.class) != null)
@@ -407,6 +412,8 @@ public class ORM implements IORM {
 						JavaSQLTypeImpl.typesMapping.getSqlTypeInfo(objectField
 								.getType()).sqlType);
 			}
+			updateStatement.setObject(fieldn, getPrimaryKeyObj(getPrimaryKey(o), o), JavaSQLTypeImpl.typesMapping.getSqlTypeInfo(getPrimaryKey(o).getType()).sqlType);
+			updateStatement.execute();
 
 			return o;
 
@@ -432,13 +439,17 @@ public class ORM implements IORM {
 		StringBuilder query = new StringBuilder();
 
 		query.append("SELECT ");
-		for (int i = 0; i < projections.length; i++) {
-			String projection = projections[i];
-			if (i != projections.length - 1) {
-				query.append(projection + ",");
-			} else {
-				query.append(projection);
+		if(projections != null){
+			for (int i = 0; i < projections.length; i++) {
+				String projection = projections[i];
+				if (i != projections.length - 1) {
+					query.append(projection + ",");
+				} else {
+					query.append(projection);
+				}
 			}
+		}else{
+			query.append("*");
 		}
 		query.append(" FROM " + getTableName(c) + " WHERE ");
 
@@ -460,22 +471,31 @@ public class ORM implements IORM {
 		try {
 			PreparedStatement selectStatement = connection
 					.prepareStatement(query.toString());
-			for (int i = 0; i < where.values().toArray().length; i++) {
-				selectStatement.setObject(i, where.values().toArray()[i],
+			for (int i = 1; i <= where.values().toArray().length; i++) {
+				selectStatement.setObject(i, where.values().toArray()[i-1],
 						JavaSQLTypeImpl.typesMapping.getSqlTypeInfo(where.values()
-								.toArray()[i].getClass()).sqlType);
+								.toArray()[i-1].getClass()).sqlType);
 			}
 			ResultSet resultSet = selectStatement.executeQuery();
 			List<Object> out = new ArrayList<>();
-			do {
+			while(resultSet.next()) {
 				Object rowObj = c.newInstance();
-				for (String p : projections) {
-					Field mapField = c.getField(p);
-					mapField.set(rowObj, resultSet.getObject(
-							getFieldName(mapField), mapField.getClass()));
+				if(projections != null){
+					for (String p : projections) {
+						Field mapField = c.getField(p);
+						mapField.set(rowObj, resultSet.getObject(
+								getFieldName(mapField), mapField.getType()));
+					}
+				}else{
+					for (Field mapField : c.getDeclaredFields()) {
+						if (Modifier.isVolatile(mapField.getModifiers()))
+							continue;
+						mapField.setAccessible(true);
+						mapField.set(rowObj, resultSet.getObject(getFieldName(mapField), mapField.getType()));
+					}
 				}
 				out.add(rowObj);
-			} while (resultSet.next());
+			};
 			return out;
 		} catch (SQLException | InstantiationException | IllegalAccessException
 				| NoSuchFieldException | SecurityException e) {
@@ -490,7 +510,14 @@ public class ORM implements IORM {
 	public List<Object> _find(Class<?> c, String[] projections,
 			Map<String, Object> where, String[] orderby, Integer limit,
 			Integer offset) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = createConnectionObject();
+		
+		try {
+			checkAndSyncSchema(c, connection);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return makeSelect(c, projections, where, orderby, limit, offset, connection);
 	}
 }

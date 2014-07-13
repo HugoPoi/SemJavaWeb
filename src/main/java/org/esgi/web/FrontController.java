@@ -16,6 +16,8 @@ import org.esgi.module.leanforge.TutorialCategory;
 import org.esgi.module.leanforge.TutorialStepDisplay;
 import org.esgi.module.leanforge.TutorialUpload;
 import org.esgi.module.leanforge.model.TutorialModel;
+import org.esgi.module.user.Administration;
+import org.esgi.module.user.Login;
 import org.esgi.web.action.IAction;
 import org.esgi.web.action.IContext;
 import org.esgi.web.layout.LayoutRenderer;
@@ -75,6 +77,8 @@ public class FrontController extends HttpServlet{
 		registerAction(new TutorialUpload(mainConfig,data));
 		registerAction(new TutorialCategory(mainConfig,data));
 		registerAction(new TutorialCategories(mainConfig,data));
+		registerAction(new Login());
+		registerAction(new Administration());
 		
 		layoutRender = new LayoutRenderer();
 	}
@@ -83,6 +87,7 @@ public class FrontController extends HttpServlet{
 			request, HttpServletResponse response)
 					throws ServletException, IOException {
 
+		request.getSession(true);
 		String url = request.getPathInfo();
 		IContext context = createContext(request, response);
 		IAction action = router.find(url, context);
