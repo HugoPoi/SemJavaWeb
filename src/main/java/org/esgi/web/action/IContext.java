@@ -5,8 +5,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
 import org.apache.velocity.VelocityContext;
 import org.esgi.orm.model.User;
+import org.esgi.web.NotifyError;
 
 public interface IContext {
 
@@ -30,6 +32,8 @@ public interface IContext {
 	void addOnJsReady(String str);
 	User getConnectedUser();
 	void setConnectedUser(User in);
-	Map<String,String> getErrors();
-	void addError(String identifier, String message);
+	Map<String,NotifyError> getErrors();
+	void addError(String identifier, NotifyError error);
+	Map<String, String> getMultipartParameters();
+	Map<String, FileItem> getFiles();
 }

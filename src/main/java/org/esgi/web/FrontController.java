@@ -13,6 +13,7 @@ import org.apache.velocity.app.Velocity;
 import org.esgi.module.leanforge.Home;
 import org.esgi.module.leanforge.TutorialCategories;
 import org.esgi.module.leanforge.TutorialCategory;
+import org.esgi.module.leanforge.TutorialManager;
 import org.esgi.module.leanforge.TutorialStepDisplay;
 import org.esgi.module.leanforge.TutorialUpload;
 import org.esgi.module.leanforge.model.TutorialModel;
@@ -78,7 +79,8 @@ public class FrontController extends HttpServlet{
 		registerAction(new TutorialCategory(mainConfig,data));
 		registerAction(new TutorialCategories(mainConfig,data));
 		registerAction(new Login());
-		registerAction(new Administration());
+		registerAction(new Administration(mainConfig, data));
+		registerAction(new TutorialManager(mainConfig, data));
 		
 		layoutRender = new LayoutRenderer();
 	}
@@ -96,6 +98,13 @@ public class FrontController extends HttpServlet{
 		response.addHeader("Content-Type", "text/html; charset=utf-8");
 
 		if (null != action){
+			
+			if(action.getMinimumRole() != null){
+				if(context.getConnectedUser() == null){
+					response.sendRedirect(context.getConfig("context") + "/login");
+					return;
+				}
+			}
 
 			if (null == action.getLayout()) {
 				try {

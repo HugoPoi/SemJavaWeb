@@ -5,4 +5,5 @@ public interface IAction {
 	public String getRoute();
 	public String getLayout();
 	public String[] getRewriteGroups();
+	public String getMinimumRole();
 }

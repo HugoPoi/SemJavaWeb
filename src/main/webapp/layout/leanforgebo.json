@@ -4,7 +4,7 @@
 	                	 "shared/main_header" : ["__CURRENT__"]
 	                 },
 	                 
-	                 	{"__CURRENT__": ["shared/errorheader"]}
+	                 	{"__CURRENT__": ["/manager/tutorial","shared/errorheader"]}
 	                 ,
 	                 { 
 	                	 "shared/main_footer" : ["__CURRENT__"]

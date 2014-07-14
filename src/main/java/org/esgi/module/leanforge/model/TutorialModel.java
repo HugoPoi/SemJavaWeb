@@ -2,11 +2,15 @@ package org.esgi.module.leanforge.model;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+
+import org.esgi.orm.ORM;
+import org.esgi.orm.model.UploadedTutorial;
 
 import dev.leanforge.tutorialschema.Tutorial;
 import dev.leanforge.tutorialschema.Tutorial.Content;
@@ -42,28 +46,28 @@ public class TutorialModel {
 
 		loadedTutorials = new HashMap<>();
 		for (File tutorialfile : tutorialsDir.listFiles()) {
-			loadOneFile(tutorialfile);
+			try {
+				loadOneFile(tutorialfile);
+			} catch (JAXBException e) {
+				e.printStackTrace();
+				tutorialfile.delete();
+			}
 		}
 	}
 
-	public void reloadOneTutorial(String idname) {
+	public void reloadOneTutorial(String idname) throws JAXBException {
 		File tutorialfile = new File(mainConfig.getProperty("realpath")
 				+ mainConfig.getProperty("tutorial.repository") + "/" + idname + ".xml");
 		loadOneFile(tutorialfile);
 	}
 
-	public void loadOneFile(File tutorialfile) {
+	public void loadOneFile(File tutorialfile) throws JAXBException {
 		//TODO : utf8 formating problem
 		if (tutorialfile.isFile() && tutorialfile.getName().endsWith(".xml")) {
-			try {
 				dev.leanforge.tutorialschema.Tutorial tutorialData = (dev.leanforge.tutorialschema.Tutorial) unmarshaller
 						.unmarshal(tutorialfile);
 				loadedTutorials.put(tutorialfile.getName().split(".xml")[0],
 						tutorialData);
-			} catch (JAXBException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 	}
 	
@@ -79,5 +83,20 @@ public class TutorialModel {
 		}
 		return selectedContent;
 	}
+	
+	public void deleteTutorial(String idname){
+		File tutorialfile = new File(mainConfig.getProperty("realpath") + mainConfig.getProperty("tutorial.repository") + "/" + idname + ".xml");
+		tutorialfile.delete();
+		loadedTutorials.remove(idname);
+		HashMap<String, Object> filter = new HashMap<String, Object>();
+		filter.put("tutorialName", idname);
+		List<Object> result = ORM.find(UploadedTutorial.class, null, filter, null, 1, null);
+		if (result.size() >= 1) {
+			UploadedTutorial ut = (UploadedTutorial) result.get(0);
+			ORM.remove(ut);
+		}
+		
+	}
+	
 
 }

@@ -11,10 +11,12 @@ import dev.leanforge.tutorialschema.Tutorial.Content.Step;
 public class TutorialStepDisplay extends AbstractAction {
 	
 	TutorialModel mdata;
+	Properties mainConfig;
 	
 	public TutorialStepDisplay(Properties config, TutorialModel mdata) {
 		super(config);
 		this.mdata = mdata;
+		mainConfig = config;
 	}
 	
 	@Override
@@ -37,6 +39,7 @@ public class TutorialStepDisplay extends AbstractAction {
 		context.getVelocityContext().put("tutorialStep", selectedStep);
 		context.getVelocityContext().put("tutorialContent", selectedContent);
 		context.getVelocityContext().put("title", selectedContent.getTitle() + " - " + selectedStep.getName());
+		context.getVelocityContext().put("tutorialressources", context.getConfig("context") + mainConfig.getProperty("tutorial.ressources.repository") + "/" + context.getParameter("tutorial"));
 		
 	}
 	

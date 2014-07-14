@@ -1,7 +1,7 @@
 
 #foreach($errorkey in $context.getErrors().keySet())
-<div class="alert alert-warning alert-dismissible" role="alert">
+<div class="alert alert-$context.getErrors().get($errorkey).Type alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  <strong>Warning!</strong> $context.getErrors().get($errorkey) (code:$errorkey)
+  <strong>$context.getErrors().get($errorkey).getType().name() ! </strong> $context.getErrors().get($errorkey).Message (code:$errorkey)
 </div>
 #end

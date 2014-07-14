@@ -25,9 +25,13 @@
 			#if ($substep.getText())
 				$substep.getText()
 			#elseif ($substep.getImg())
-				<img src="$substep.getImg().getSrc()" alt="$substep.getImg().getAlt()">
+				<img src="$tutorialressources/$substep.getImg().getSrc()" alt="$substep.getImg().getAlt()">
 			#elseif ($substep.getBtn())
+				#if($substep.getBtn().getHref().startsWith("http://"))
 				<a href="$substep.getBtn().getHref()" title="$substep.getBtn().getAlt()" class="btn btn-primary">$substep.getBtn().getTitle()</a>
+				#else
+				<a href="$tutorialressources/$substep.getBtn().getHref()" title="$substep.getBtn().getAlt()" class="btn btn-primary">$substep.getBtn().getTitle()</a>
+				#end
 			#elseif ($substep.getCode())
 				<pre>$substep.getCode()</pre>
 			#elseif ($substep.getSlider())
@@ -44,7 +48,7 @@
 			  <div class="carousel-inner">
 			  	#foreach($img in $substep.getSlider().getImg())
 			    <div class="item active">
-			      <img src="$img.getSrc()" alt="$img.getAlt()">
+			      <img src="$tutorialressources/$img.getSrc()" alt="$img.getAlt()">
 			      <div class="carousel-caption">$img.getTitle()
 			      </div>
 			    </div>
@@ -63,7 +67,7 @@
 			<div class="row">
 				#foreach($img in $substep.getMultiimg().getImg())
 			    <div class="col-md-3">
-			      <img src="$img.getSrc()" alt="$img.getAlt()">
+			      <img src="$tutorialressources/$img.getSrc()" alt="$img.getAlt()">
 			      <div class="caption">$img.getTitle()
 			      </div>
 			    </div>

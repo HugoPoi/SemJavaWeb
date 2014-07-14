@@ -1,7 +1,6 @@
 package org.esgi.orm.utils;
 
 import java.sql.Types;
-import java.util.Date;
 
 public class JavaSQLTypeImpl {
 	
@@ -12,7 +11,8 @@ public class JavaSQLTypeImpl {
 		
 		typesMapping.add(new JavaSqlTypeBindItem(Integer.class, Types.INTEGER, 11));
 		typesMapping.add(new JavaSqlTypeBindItem(String.class, Types.VARCHAR, 300));
-		typesMapping.add(new JavaSqlTypeBindItem(Date.class, Types.DATE, null));
+		typesMapping.add(new JavaSqlTypeBindItem(java.sql.Date.class, Types.TIMESTAMP, null));
+		//typesMapping.add(new JavaSqlTypeBindItem(Date.class, Types.TIMESTAMP, null));
 	}
 
 }

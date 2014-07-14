@@ -22,6 +22,17 @@ public class User {
 	@ORM_AUTO_INCREMENT
 	public Integer id;
 	public String login;
+	public String teamname;
+	public String role;
+	
+	public String getLogin() {
+		return login;
+	}
+
+	public String getTeamname() {
+		return teamname;
+	}
+
 	private String password;
 	public volatile Date connectedAt;
 	

@@ -12,6 +12,12 @@ import java.util.TreeSet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.velocity.VelocityContext;
 import org.esgi.orm.model.User;
 import org.esgi.web.action.IContext;
@@ -25,7 +31,7 @@ public class Context implements IContext {
 	
 	Map<String, Object> mapParameters;
 	Map<String, Object> mapFragments;
-	Map<String, String> errors;
+	Map<String, NotifyError> errors;
 	
 	public String pageTitle;
 	public String pageMetaDescription;
@@ -36,6 +42,9 @@ public class Context implements IContext {
 	
 	public List<String> inlineCss;
 	public List<String> rawHeaders;
+	
+	Map<String, String> multipartParameters;
+	Map<String, FileItem> files;
 
 	Context(HttpServletRequest _request, HttpServletResponse _response, Properties properties){
 		request = _request;
@@ -47,12 +56,35 @@ public class Context implements IContext {
 		mapParameters = new HashMap<>();
 		mapFragments = new HashMap<>();
 		keywords = new ArrayList<String>();
-		errors = new HashMap<String, String>();
+		errors = new HashMap<String, NotifyError>();
 		
 		jsUrls = new TreeSet<String>();
 		cssUrls = new TreeSet<String>();
 		
 		inlineCss = new ArrayList<>();
+		
+		multipartParameters = new HashMap<String, String>();
+		files = new HashMap<String, FileItem>();
+		
+		if(ServletFileUpload.isMultipartContent(_request)){
+			FileItemFactory fif = new DiskFileItemFactory(); 
+			ServletFileUpload servletFileUpload = new ServletFileUpload(fif);
+			
+			try {
+				for (FileItem item : servletFileUpload.parseRequest(_request)) {
+				    if (item.isFormField()) {
+				        // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
+				    	multipartParameters.put(item.getFieldName(), item.getString());
+				    } else {
+				        // Process form file field (input type="file").
+				    	multipartParameters.put(item.getFieldName(), FilenameUtils.getName(item.getName()));
+				        files.put(item.getFieldName(), item);
+				    }
+				}
+			} catch (FileUploadException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public Set<String> getCssUrls(){
@@ -182,13 +214,23 @@ public class Context implements IContext {
 	}
 
 	@Override
-	public Map<String, String> getErrors() {
+	public Map<String, NotifyError> getErrors() {
 		return errors;
 	}
 
 	@Override
-	public void addError(String identifier, String message) {
-		errors.put(identifier, message);
+	public void addError(String identifier, NotifyError error) {
+		errors.put(identifier, error);
+	}
+
+	@Override
+	public Map<String, String> getMultipartParameters() {
+		return multipartParameters;
+	}
+
+	@Override
+	public Map<String, FileItem> getFiles() {
+		return files;
 	}
 	
 

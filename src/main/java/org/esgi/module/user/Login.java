@@ -1,6 +1,8 @@
 package org.esgi.module.user;
 
 import org.esgi.orm.model.User;
+import org.esgi.web.NotifyError;
+import org.esgi.web.NotifyType;
 import org.esgi.web.action.AbstractAction;
 import org.esgi.web.action.IContext;
 
@@ -25,10 +27,10 @@ public class Login extends AbstractAction{
 						context.setConnectedUser(loggedUser);
 						context.getResponse().sendRedirect(context.getConfig("context") + "/manager");
 					}else{
-						context.addError("wronglogin", "bad login or password.");
+						context.addError("wronglogin", new NotifyError("bad login or password.", NotifyType.Warning));
 					}
 				}else{
-					context.addError("emptylogin", "login or password are empty.");
+					context.addError("emptylogin", new NotifyError("login or password are empty.", NotifyType.Warning));
 				}
 			}
 		}

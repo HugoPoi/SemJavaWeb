@@ -12,7 +12,7 @@ public interface IORM {
 	public Object _load(Class<?> c, Object id);
 	
 	/** delete an record from clazz persistence layer */
-	public boolean _remove(Class<?> c, Object id);
+	public boolean _remove(Object o);
 	
 	public List<Object> _find(Class<?> c, String[] projections, Map<String, Object> where, String[] orderby, Integer limit, Integer offset);
 	

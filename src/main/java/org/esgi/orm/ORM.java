@@ -49,8 +49,8 @@ public class ORM implements IORM {
 		return instance._load(c, id);
 	}
 
-	public static boolean remove(Class<?> c, Object id) {
-		return instance._remove(c, id);
+	public static boolean remove(Object o) {
+		return instance._remove(o);
 	}
 	
 	public static List<Object> find(Class<?> c, String[] projections, Map<String, Object> where, String[] orderby, Integer limit, Integer offset){
@@ -104,8 +104,16 @@ public class ORM implements IORM {
 	}
 
 	@Override
-	public boolean _remove(Class<?> c, Object id) {
-		return false;
+	public boolean _remove(Object o) {
+		Connection connection = createConnectionObject();
+		
+		try {
+			checkAndSyncSchema(o.getClass(), connection);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return makeDelete(o, connection);
 	}
 	private Object getPrimaryKeyObj(Field f,Object o){
 		if (f != null) {
@@ -306,7 +314,7 @@ public class ORM implements IORM {
 				makeCreateTable(c, connection);
 			} catch (SQLException e) {
 				if(e.getMessage().indexOf("already exists") != -1){
-					//makeAlterTable(c, connection);
+					makeAlterTable(c, connection);
 				}else{
 					throw e;
 				}
@@ -318,24 +326,37 @@ public class ORM implements IORM {
 	
 	// TODO : modify  
 	private void makeAlterTable(Class<?> c, Connection connection) throws SQLException {
-
+		
+		PreparedStatement oldfieldsR = connection.prepareStatement("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '"+ mysqlDatabase+"' AND TABLE_NAME = '"+ ORM.getTableName(c) +"' ");
+		ResultSet oldfieldsRS = oldfieldsR.executeQuery();
+		ArrayList<String> listOldFields = new ArrayList<>();
+		while(oldfieldsRS.next()){
+			listOldFields.add(oldfieldsRS.getString("COLUMN_NAME"));
+		}
+		oldfieldsRS.close();
+		
 		StringBuilder query = new StringBuilder();
 
 		query.append("ALTER TABLE `" + mysqlDatabase + "` . `"
 				+ ORM.getTableName(c) + "` ");
 
 		Boolean first = true;
-		for (Field objectField : c.getFields()) {
+		for (Field objectField : c.getDeclaredFields()) {
 			// The field must be a persistent data
 			if (Modifier.isVolatile(objectField.getModifiers()))
 				continue;
 
-			// Add the field name
-			if (first) {
-				query.append("CHANGE `" + getFieldName(objectField) + "` `" + getFieldName(objectField) + "` ");
+			if (!first){
+				query.append(", ");
+			}else{
 				first = false;
-			} else {
-				query.append(", CHANGE `" + getFieldName(objectField) + "` `" + getFieldName(objectField) + "` ");
+			}
+			
+			// Add the field name
+			if (listOldFields.contains(getFieldName(objectField))) {
+				query.append("CHANGE `" + getFieldName(objectField) + "` `" + getFieldName(objectField) + "` ");
+			}else{
+				query.append("ADD `" + getFieldName(objectField) + "` ");
 			}
 
 			// Get the field type
@@ -356,7 +377,8 @@ public class ORM implements IORM {
 				query.append(" NOT NULL");
 			}
 			if (null != objectField.getAnnotation(ORM_PK.class)) {
-				query.append(" PRIMARY KEY");
+				//TODO : refactoring to use ADD PRIMARY KEY
+				//query.append(" PRIMARY KEY");
 			}
 			if (null != objectField.getAnnotation(ORM_UNIQUE.class)) {
 				query.append(" UNIQUE");
@@ -504,6 +526,24 @@ public class ORM implements IORM {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public boolean makeDelete(Object o, Connection connection){
+		// Check if PK exists
+		Field pkField = getPrimaryKey(o);
+		Object pkObj = getPrimaryKeyObj(pkField,o);
+		StringBuilder query = new StringBuilder();
+		query.append("DELETE FROM `"+ ORM.mysqlDatabase +"`.`"+ getTableName(o.getClass()) +"` WHERE `"+ getFieldName(pkField)+"` = ?");
+		try {
+			PreparedStatement deleteStatement = connection.prepareStatement(query.toString());
+			JavaSqlTypeBindItem sqlConvertedTypeInfo = JavaSQLTypeImpl.typesMapping.getSqlTypeInfo(pkField.getType());
+			deleteStatement.setObject(1, pkObj, sqlConvertedTypeInfo.sqlType);
+			deleteStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
 	}
 
 	@Override

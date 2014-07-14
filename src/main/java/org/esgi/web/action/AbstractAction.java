@@ -35,5 +35,9 @@ public class AbstractAction implements IAction {
 	public String getLayout() {
 		return "default";
 	}
-
+	
+	@Override
+	public String getMinimumRole() {
+		return null;
+	}
 }
