@@ -12,7 +12,7 @@
 		<ol class="list-inline step-list">
 		#foreach($step in $tutorialContent.getStep())
 		#set( $stepcount = $velocityCount - 1 )
-			<li><a title="$step.getName()" href="$tutorialBaseURL/$stepcount">$stepcount</a></li>
+			<li><a title="$step.getName()" href="$tutorialBaseURL/$stepcount"><div class="circle-number">$stepcount</div></a></li>
 		#end
 		</ol>
 	</div>
@@ -76,6 +76,20 @@
 			#end
 			</li>
 		#end
+		</ul>
+		<ul class="pager">
+		#if($previous)
+			<li class="previous"><a href="$previous">&larr; Previous Step</a></li>
+		#else
+			<li class="previous disabled"><a href="#">&larr; Previous Step</a></li>
+		#end
+		
+		#if($next)
+			<li class="next"><a href="$next">Next Step &rarr;</a></li>
+		#else
+			<li class="next disabled"><a href="#">Next Step &rarr;</a></li>
+		#end
+		
 		</ul>
 	</div>
 </div>

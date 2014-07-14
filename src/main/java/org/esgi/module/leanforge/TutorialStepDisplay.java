@@ -41,6 +41,10 @@ public class TutorialStepDisplay extends AbstractAction {
 		context.getVelocityContext().put("title", selectedContent.getTitle() + " - " + selectedStep.getName());
 		context.getVelocityContext().put("tutorialressources", context.getConfig("context") + mainConfig.getProperty("tutorial.ressources.repository") + "/" + context.getParameter("tutorial"));
 		
+		Integer currentStep = Integer.parseInt((String) context.getParameter("step"));
+		
+		if(currentStep + 1 < selectedContent.getStep().size()) context.getVelocityContext().put("next", context.getConfig("context") + "/tutorial/" + context.getParameter("tutorial") + "/" + (currentStep+1));
+		if(currentStep - 1 >= 0) context.getVelocityContext().put("previous", context.getConfig("context") + "/tutorial/" + context.getParameter("tutorial") + "/" + (currentStep-1));
 	}
 	
 	public String getRoute() {
