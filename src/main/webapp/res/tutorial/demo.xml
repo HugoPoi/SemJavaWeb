@@ -33,12 +33,20 @@
       <substep><text><![CDATA[
         Go to the configuration menu
       ]]></text></substep>
-      <substep><text><![CDATA[
-        Configure this settings : .
-      ]]></text></substep>
-      <substep><text><![CDATA[
-        Then click on start button.
-      ]]></text></substep>
+      <substep>
+        <slider>
+          <img src="hello-world.png" title="test1" alt="test1" />
+          <img src="test-201.gif" title="test2" alt="test1" />
+          <img src="test.jpg" title="test3" alt="test1" />
+        </slider>
+      </substep>
+      <substep>
+        <multiimg>
+          <img src="hello-world.png" title="test1" alt="test1" />
+          <img src="test-201.gif" title="test2" alt="test1" />
+          <img src="test.jpg" title="test3" alt="test1" />
+        </multiimg>
+      </substep>
     </step>
   </content>
 </tutorial>

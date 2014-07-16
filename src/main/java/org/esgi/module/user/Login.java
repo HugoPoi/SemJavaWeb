@@ -14,6 +14,9 @@ public class Login extends AbstractAction{
 
 	@Override
 	public void execute(IContext context) throws Exception {
+		
+		context.setPageTitle("Login - Lean Forge");
+		
 		String login = context.getRequest().getParameter("login");
 		String password = context.getRequest().getParameter("password");
 		

@@ -26,6 +26,7 @@ public class TutorialManager extends AbstractAction {
 
 		if(context.getFiles().get("zipfile") != null){
 				ressource.loadRessource(context.getMultipartParameters().get("idname"), context.getFiles().get("zipfile").getInputStream());
+				context.addError("successaddzip", new NotifyError("Le zip a été décompressé pour "+ context.getMultipartParameters().get("idname") + ".", NotifyType.Success));
 		}
 		
 		if(context.getMultipartParameters().get("delete") != null){
