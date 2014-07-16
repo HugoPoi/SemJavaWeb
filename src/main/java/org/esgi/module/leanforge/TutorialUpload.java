@@ -49,6 +49,7 @@ public class TutorialUpload extends AbstractAction {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 				context.addError("notxml", new NotifyError("Vous devez uploader un fichier XML", NotifyType.Error));
+				fileOnDisk.delete();
 				return;
 			} catch (JAXBException e) {
 				// TODO Auto-generated catch block
@@ -59,6 +60,9 @@ public class TutorialUpload extends AbstractAction {
 				return;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				context.addError("parsingexception", new NotifyError("Votre fichier ne respecte pas le format XML.", NotifyType.Error));
+				context.getVelocityContext().put("errordetails", e.getCause().toString().split(";"));
+				fileOnDisk.delete();
 				e.printStackTrace();
 				return;
 			}
