@@ -34,7 +34,7 @@ public class Administration extends AbstractAction{
 		if(context.getConnectedUser().role == null || !context.getConnectedUser().role.equals("admin")){
 			HashMap<String, Object> filter = new HashMap<String, Object>();
 			filter.put("user_id", context.getConnectedUser().id);
-			List<Object> result = ORM.find(UploadedTutorial.class, new String[]{"tutorialName"}, filter, null, 1, null);
+			List<Object> result = ORM.find(UploadedTutorial.class, new String[]{"tutorialName"}, filter, null, null, null);
 			List<String> userTutorials = new ArrayList<>();
 			for (Object tutoUpload : result) {
 				UploadedTutorial rUT = (UploadedTutorial) tutoUpload;
