@@ -179,7 +179,7 @@ public class ORM implements IORM {
 
 		query.append("INSERT INTO `" + getTableName(o.getClass()) + "` (");
 		Boolean first = true;
-		for (Field objectField : o.getClass().getFields()) {
+		for (Field objectField : o.getClass().getDeclaredFields()) {
 			// The field must be a persistent data
 			if (Modifier.isVolatile(objectField.getModifiers()))
 				continue;
@@ -195,7 +195,7 @@ public class ORM implements IORM {
 
 		query.append(") VALUES (");
 		first = true;
-		for (Field objectField : o.getClass().getFields()) {
+		for (Field objectField : o.getClass().getDeclaredFields()) {
 			// The field must be a persistent data
 			if (Modifier.isVolatile(objectField.getModifiers()))
 				continue;
@@ -214,7 +214,7 @@ public class ORM implements IORM {
 			insertStatement = connection.prepareStatement(query.toString(),
 					Statement.RETURN_GENERATED_KEYS);
 			int fieldn = 1;
-			for (Field objectField : o.getClass().getFields()) {
+			for (Field objectField : o.getClass().getDeclaredFields()) {
 				// The field must be a persistent data
 				if (Modifier.isVolatile(objectField.getModifiers()))
 					continue;
@@ -229,7 +229,7 @@ public class ORM implements IORM {
 			ResultSetMetaData meta = generatedRowField.getMetaData();
 			do {
 				for (int i = 1; i <= meta.getColumnCount(); i++) {
-					for (Field objectField : o.getClass().getFields()) {
+					for (Field objectField : o.getClass().getDeclaredFields()) {
 						if (getFieldName(objectField).equals(
 								meta.getColumnLabel(i))) {
 							objectField.set(o, generatedRowField.getObject(i));
@@ -255,7 +255,7 @@ public class ORM implements IORM {
 				+ ORM.getTableName(c) + "` ( ");
 
 		Boolean first = true;
-		for (Field objectField : c.getFields()) {
+		for (Field objectField : c.getDeclaredFields()) {
 			// The field must be a persistent data
 			if (Modifier.isVolatile(objectField.getModifiers()))
 				continue;
@@ -448,7 +448,7 @@ public class ORM implements IORM {
 	}
 
 	private Field getPrimaryKey(Object o) {
-		for (Field f : o.getClass().getFields()) {
+		for (Field f : o.getClass().getDeclaredFields()) {
 			if (f.getAnnotation(ORM_PK.class) != null)
 				return f;
 		}
