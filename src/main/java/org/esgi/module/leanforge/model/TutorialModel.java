@@ -3,6 +3,7 @@ package org.esgi.module.leanforge.model;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.xml.bind.JAXBContext;
@@ -96,6 +97,20 @@ public class TutorialModel {
 			ORM.remove(ut);
 		}
 		
+	}
+	
+	public Map<String, String> getSoftwares(){
+		Map<String, String> Softwares = new HashMap<String, String>();
+		
+		for (Tutorial el : loadedTutorials.values()) {
+			try{
+			Softwares.put(el.getMeta().getSoftware().getId(), el.getMeta().getSoftware().getName());
+			}
+			catch(Exception e){
+				
+			}
+		}
+		return Softwares;
 	}
 	
 

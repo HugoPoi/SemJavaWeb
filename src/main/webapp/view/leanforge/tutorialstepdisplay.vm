@@ -3,7 +3,7 @@
 		<a href="/"><img class="img-responsive" src="$context.getConfig("imgbaseurl")/logo.png" alt="Home logo lean forge"></a>
 	</div>
 	<div class="col-md-10">
-		<h1>$title <span class="pull-right">$metas.getLanguages().getCodinglang().get(0)</span></h1>
+		<h1>$title #if($metas.getLanguages().getCodinglang().get(0))<span class="pull-right">$metas.getLanguages().getCodinglang().get(0)</span>#end</h1>
 		<h2>$metas.getSoftware().getName()</h2>
 	</div>
 </div>
@@ -25,7 +25,7 @@
 			#if ($substep.getText())
 			<li class="tutorial-text">	$substep.getText() </li>
 			#elseif ($substep.getImg())
-			<li class="tutorial-img">	<img class="img-responsive" src="$tutorialressources/$substep.getImg().getSrc()" alt="$substep.getImg().getAlt()"> </li>
+			<li class="tutorial-img">	<img class="img-responsive img-thumbnail" src="$tutorialressources/$substep.getImg().getSrc()" alt="$substep.getImg().getAlt()"> </li>
 			#elseif ($substep.getBtn())
 			<li class="tutorial-btn">
 				#if($substep.getBtn().getHref().startsWith("http://"))
@@ -75,7 +75,7 @@
 			<div class="row">
 				#foreach($img in $substep.getMultiimg().getImg())
 			    <div class="col-md-3">
-			      <img class="img-responsive" src="$tutorialressources/$img.getSrc()" alt="$img.getAlt()">
+			      <img class="img-responsive img-thumbnail" src="$tutorialressources/$img.getSrc()" alt="$img.getAlt()">
 			      <div class="caption">$img.getTitle()
 			      </div>
 			    </div>

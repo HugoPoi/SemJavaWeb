@@ -1,8 +1,10 @@
 package org.esgi.module.leanforge;
 
-import java.util.ArrayList;
+
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.TreeMap;
 
 import org.esgi.module.leanforge.model.TutorialModel;
 import org.esgi.web.action.AbstractAction;
@@ -28,16 +30,20 @@ public class TutorialCategory extends AbstractAction {
 		context.setPageTitle((String) context.getParameter("category"));
 		
 		context.getVelocityContext().put("category", context.getParameter("category"));
-		ArrayList<String> selectedTutos = new ArrayList<>();
+		Map<String,String> selectedSoft = new TreeMap<>();
 		for(Entry<String, Tutorial> t : mdata.loadedTutorials.entrySet()){
 			if(t.getValue().getMeta().getCategories().getCategory().contains(Leancategory.fromValue((String) context.getParameter("category")))){
-				selectedTutos.add(t.getKey());
+				try{
+				selectedSoft.put(t.getValue().getMeta().getSoftware().getId(),t.getValue().getMeta().getSoftware().getName());
+				}
+				catch(Exception e){
+					
+				}
 			}
 		}
 		context.getVelocityContext().put("TutorialModel", TutorialModel.class);
-		context.getVelocityContext().put("tutorials", selectedTutos);
-		context.getVelocityContext().put("tutorialsData", mdata.loadedTutorials);
-		context.getVelocityContext().put("tutorialBaseURL", context.getConfig("context") + "/tutorial/");
+		context.getVelocityContext().put("softwares", selectedSoft);
+		context.getVelocityContext().put("softwareBaseURL", context.getConfig("context") + "/software/");
 	}
 	
 	@Override

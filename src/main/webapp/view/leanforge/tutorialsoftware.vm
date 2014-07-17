@@ -3,13 +3,13 @@
 		<img class="img-responsive" src="$context.getConfig("imgbaseurl")/logo.png" alt="Home logo lean forge">
 	</div>
 	<div class="col-md-10">
-		<h1>$category</h1>
+		<h1>$software</h1>
 	</div>
 </div>
 <div class="row">
-#foreach($software in $softwares.keySet())
+#foreach($tuto in $tutorials)
 	<div class="col-md-12">
-		<h2><a href="$softwareBaseURL$software">$softwares.get($software)</a></h2>
+		<h2><a href="$tutorialBaseURL$tuto/0">$TutorialModel.getContentForLang($tutorialsData.get($tuto), "fr-fr").getTitle()</a></h2>
 	</div>
 #end
 </div>

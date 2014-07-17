@@ -14,6 +14,8 @@ import org.esgi.module.leanforge.Home;
 import org.esgi.module.leanforge.TutorialCategories;
 import org.esgi.module.leanforge.TutorialCategory;
 import org.esgi.module.leanforge.TutorialManager;
+import org.esgi.module.leanforge.TutorialSoftware;
+import org.esgi.module.leanforge.TutorialSoftwares;
 import org.esgi.module.leanforge.TutorialStepDisplay;
 import org.esgi.module.leanforge.TutorialUpload;
 import org.esgi.module.leanforge.model.TutorialModel;
@@ -81,6 +83,8 @@ public class FrontController extends HttpServlet{
 		registerAction(new Login());
 		registerAction(new Administration(mainConfig, data));
 		registerAction(new TutorialManager(mainConfig, data));
+		registerAction(new TutorialSoftwares(mainConfig, data));
+		registerAction(new TutorialSoftware(mainConfig, data));
 		
 		layoutRender = new LayoutRenderer();
 	}

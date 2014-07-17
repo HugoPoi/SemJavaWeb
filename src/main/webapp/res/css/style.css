@@ -15,3 +15,9 @@
 .step-list.list-inline > li:first-child{
   padding-left: 5px;
 }
+.tutorial-step li{
+list-style: none outside none;
+}
+.cat-navs{
+  margin-top: 10px;
+}

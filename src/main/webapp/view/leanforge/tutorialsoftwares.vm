@@ -3,20 +3,20 @@
 		<img class="img-responsive" src="$context.getConfig("imgbaseurl")/logo.png" alt="Home logo lean forge">
 	</div>
 	<div class="col-md-10">
-		<h1>Start coding</h1>
+		<h1>Liste des logiciels disponibles</h1>
 	</div>
 </div>
 <div class="row">
 <div class="col-md-12">
 	<ul class="nav nav-pills cat-navs">
-	  <li class="active"><a href="$context.getConfig("context")/categories">Par catégorie</a></li>
-	  <li><a href="$context.getConfig("context")/softwares">Par logiciel</a></li>
+	  <li><a href="$context.getConfig("context")/categories">Par catégorie</a></li>
+	  <li class="active"><a href="$context.getConfig("context")/softwares">Par logiciel</a></li>
 	  <li><a href="$context.getConfig("context")/languages">Par languages</a></li>
 	</ul>
 </div>
-#foreach($category in $categories)
+#foreach($software in $softwares.keySet())
 	<div class="col-md-12">
-		<h2><a href="$categoryBaseUrl$category.value()">$category.value()</a></h2>
+		<h2><a href="$softwareBaseUrl$software">$softwares.get($software)</a></h2>
 	</div>
 #end
 </div>
